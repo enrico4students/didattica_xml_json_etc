@@ -1,0 +1,52 @@
+﻿<HTML><HEAD>
+<LINK HREF="/maps/documentation/javascript/examples/default.css" REL="stylesheet">
+<SCRIPT TYPE="text/javascript"
+SRC="https://maps.googleapis.com/maps/api/js?key=AIzaSyChTsh9mTgKrBBzRAdmRVFLBTDWG__5aWk&sensor=false">
+</SCRIPT>
+<SCRIPT>
+var marker;       // dichiarazione oggetto map di tipo globale
+var map;          // dichiarazione variabile infowindow
+var infowindow;   // funzione richiamata all'apertura del body
+var coordinate = new google.maps.LatLng(43.1656,13.7242);
+var opzioniMappa = {
+   zoom: 10,
+   center: coordinate,
+   mapTypeId: google.maps.MapTypeId.ROADMAP
+}
+var image = {
+  url: 'mark.png',                  //simbolo dei marker
+  size: new google.maps.Size(32, 32),
+  origin: new google.maps.Point(0, 0),
+  anchor: new google.maps.Point(0, 32)
+};
+
+function inizializza() {
+  // creazione dell'oggetto mappa vero e proprio 
+  map = new google.maps.Map(document.getElementById('mappa'),opzioniMappa);
+  // creazione  del marker
+  marker = new google.maps.Marker({
+    position: coordinate,
+    map: map,
+    icon: image,
+    title: 'Fermo'
+  });
+  // aggiunta ascoltatore sul marker
+  google.maps.event.addListener(marker,'click', function() {   
+    // definizione della stringa HTML da visuailòizzare 
+    var stringa="<br><b>Benvenuti a "+marker.getTitle()+"</b><br>";
+    stringa+="Dista circa 6 km dal mare Adriatico, in una zona ad alta concentrazione ";
+    stringa+="demografica e incluso in un'area calzaturiera<BR><img src='fermo.jpg'>";     
+    // istanza della InfoWindows
+    var infowindow = new google.maps.InfoWindow({
+ 	    content: stringa       // stringa HTML mostrata nella infowindow
+    });
+    // metodo open che mostra la infowindow sul marker
+    infowindow.open(map, marker);  
+  });
+}
+</SCRIPT>
+</HEAD>
+<TITLE>Eventi dulla mappa con info</TITLE>
+<BODY onload="inizializza()">
+<DIV ID="mappa" STYLE="position:absolute;left:10px;top:10px;height:350px;width:400px"></div>
+</BODY></HTML>

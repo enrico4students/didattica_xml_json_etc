@@ -1,0 +1,5 @@
+com\enrico4students\xml\basic\dtd\dom\ex00\DOMValid.class
+com\enrico4students\xml\basic\dtd\sax\ex00\SAXValid.class
+com\enrico4students\xml\basic\dtd\dom\ex00\ValidHandler.class
+com\enrico4students\xml\basic\Basic.class
+com\enrico4students\xml\basic\dtd\sax\ex00\ValidHandler.class

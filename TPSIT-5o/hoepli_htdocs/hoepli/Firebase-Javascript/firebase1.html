@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<HTML>
+  <HEAD>
+    <META CHARSET="UTF-8"/>
+    <TITLE>Esempi con Firebase </TITLE>
+    <!-- 1) connessione al driver/funzioni Firebase -->
+    <script 
+     src="https://www.gstatic.com/firebasejs/7.9.3/firebase.js">
+    </script>  
+  </HEAD>
+  <BODY>
+    <P>Esempio 1: connessione a Firebase </P>
+    <H3 id="id01"></H3>
+    <script>
+      // dati della nostra configurazione Firebase 
+      var firebaseConfig = {
+        apiKey: "AIzaSyDQM4h9TpNJbksoTLdzn3Vlk_lS_gZ_6S4",
+        authDomain: "tpsit-15d0b.firebaseapp.com",
+        databaseURL: "https://tpsit-15d0b.firebaseio.com",
+        projectId: "tpsit-15d0b",
+        storageBucket: "tpsit-15d0b.appspot.com",
+        messagingSenderId: "1019912647899",
+        appId: "1:1019912647899:web:80027055b67346a5e908fe",
+        measurementId: "G-2Z8QHYM5JY"
+      };
+      // 2) inizializzazione di Firebase
+      firebase.initializeApp(firebaseConfig);
+      // 3) visualizza un singolo elemento del database
+      var output = document.getElementById('id01');
+      var dbRef = firebase.database().ref().child('testo');
+      dbRef.on('value', snap => output.innerText = snap.val());
+    </script>
+  </BODY>
+</HTML>

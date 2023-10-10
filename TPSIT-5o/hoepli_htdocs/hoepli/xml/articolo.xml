@@ -1,0 +1,16 @@
+<!--?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE articolo SYSTEM "articoli.dtd">
+-->
+<Articolo cod="a1" titolo="il DTD per XML" dataPubblicazione ="10/10/2020">
+<Paragrafo titolo="introduzione" tipo="abstract">
+<codice>par1</codice>
+<testo>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</testo>
+<immagine>schemaDTD.gif</immagine>
+</Paragrafo>
+<Paragrafo titolo ="Ti consiglio di utilizzare i DTD">
+<codice>par2</codice>
+<testo>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."</testo>
+<immagine>esempio1.gif</immagine>
+<immagine>esempio2.gif</immagine>
+</Paragrafo>
+</Articolo>

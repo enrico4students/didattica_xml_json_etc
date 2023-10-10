@@ -1,0 +1,42 @@
+﻿<HTML><HEAD>
+<LINK HREF="/maps/documentation/javascript/examples/default.css" REL="stylesheet">
+<SCRIPT TYPE="text/javascript"
+SRC="https://maps.googleapis.com/maps/api/js?key=AIzaSyChTsh9mTgKrBBzRAdmRVFLBTDWG__5aWk&sensor=false">
+</SCRIPT>
+<SCRIPT>
+// dichiarazione variabioli globali 
+var marker;
+var map;
+var infowindow;
+// funzione richiamata all'apertura del body
+function inizializza(){
+  // inseriamo le coordinate in cui "centrare" la nostra mappa
+  var coordinate = new google.maps.LatLng(45.6980, 9.0350);    
+ 
+  //dichiarazione opzioni della mappa
+  var opzioni = {
+    //Livello di zoom della mappa mostrata
+    zoom: 10,
+    center: coordinate,
+    //Tipo di mappa (strade=ROADMAP, oppure HYBRID, SATELLITE, TERRAIN)
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  }
+    // istanza di oggetto map di classe google.maps.Map
+  var map = new google.maps.Map(document.getElementById("mappa"), opzioni);
+  
+  var stringa='<br><b>Salve Mondo</b><br>sono un oggetto InfoWindow';
+  //Istanza della InfoWindows
+  var infowindow = new google.maps.InfoWindow({
+    content: stringa,      // codice HTML visualizzato nella infoWindow
+    position: coordinate   // punto di ancoraggio (se non ancorata a un marker)
+   });
+  infowindow.open(map, marker);  // metodo open che mostra la infowindow sul marker
+}
+</SCRIPT>
+</HEAD>
+<BODY onload="inizializza()">
+<DIV ID="mappa" STYLE="position:absolute;left:10px;top:50px;height:500px;width:450px"></div>
+</BODY></HTML>
+
+  
+

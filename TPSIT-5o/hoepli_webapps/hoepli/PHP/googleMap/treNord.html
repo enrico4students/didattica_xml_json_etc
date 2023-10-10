@@ -1,0 +1,75 @@
+<HTML> 
+<HEAD>
+
+<SCRIPT TYPE="text/javascript"
+SRC="https://maps.googleapis.com/maps/api/js?key=AIzaSyChTsh9mTgKrBBzRAdmRVFLBTDWG__5aWk&sensor=true">
+</SCRIPT>
+
+<STYLE>
+div.box { 
+   position:absolute;
+   left:3px;
+   top:10px;
+   background-color:azure;
+   width:400px;
+   height:640px;
+   overflow:auto; 
+   }
+div.mappa { 
+   position:absolute;
+   left:420px;
+   top:10px;
+   height:640px;
+   width:550px;
+   background-color:yellow; 
+   }
+</STYLE>
+<SCRIPT TYPE="text/javascript"> 
+function init()
+{
+   //Dichiarazione oggetto di classe DirectionService, necessario
+   //per la ricerca del percorso
+   var direzione = new google.maps.DirectionsService();
+   //Dichiarazione oggetto di classe DirectionRenderer, necessario
+   //per la visualizzazione dei risultati 
+   var mostra = new google.maps.DirectionsRenderer();
+   //Dichiarazione opzioni della mappa
+   var opzioni = 
+   {
+      //Livello di zoom della mappa mostrata
+      zoom: 7,
+      //Tipo di mappa (strade=ROADMAP, oppure HYBRID, SATELLITE, TERRAIN)
+      mapTypeId: google.maps.MapTypeId.SATELLITE
+   }
+   //Definizione delle proprietà necessarie per l'oggetto direzione
+   //inizio, fine percorso e metodo di ricerca (WALKING o DRIVING)
+   var request = 
+   {
+      origin: 'Como', 
+      destination: 'Brescia',
+      travelMode: google.maps.DirectionsTravelMode.TRANSIT
+   };
+   //Metodo route che calcola il percorso ricevendo due parametri
+   //la variabile literl request che contiene da inizio e fine percorso
+   //e la funzione anonima che riceve due parametri: response e status
+   direzione.route(request, function(response, status) {
+      //se lo status è OK
+      if (status == google.maps.DirectionsStatus.OK) 
+      {
+         //viene inserita la traccia del risultato con il metodo setDirections
+         mostra.setDirections(response);
+      }
+   });
+   //definizione oggetto di classe Maps e associazione al <div> di nome 'mappa'
+   map = new google.maps.Map(document.getElementById("mappa"), opzioni);
+   //metodo setMap che mostra nella mappa l'output dei risultati
+   mostra.setMap(map);
+   //metodo setPanel che mostra nel <div> l'output dei risultati in forma testuale
+   mostra.setPanel(document.getElementById('elenco'));
+}
+</SCRIPT>
+</HEAD> 
+<BODY onload="init()"> 
+<div class="box" id="elenco"></DIV></P>
+<DIV id="mappa" class="mappa"></DIV>
+</BODY></HTML>

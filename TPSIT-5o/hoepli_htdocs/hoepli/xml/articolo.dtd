@@ -1,0 +1,16 @@
+<!ELEMENT Articolo (Paragrafo+)>
+<!ELEMENT Paragrafo (codice*,testo+,immagine*)>
+<!ELEMENT testo (#PCDATA)>
+<!ELEMENT codice (#PCDATA)>
+<!ELEMENT immagine EMPTY>
+
+<!ATTLIST Articolo 
+cod ID #REQUIRED 
+titolo CDATA #REQUIRED 
+dataPubblicazione CDATA #IMPLIED>
+
+<!ATTLIST Paragrafo 
+titolo CDATA #REQUIRED 
+tipo (abstract|bibliografia|note) #IMPLIED>
+
+<!ATTLIST immagine file CDATA #REQUIRED>

@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>Esercitazione per gli studenti</title>
+
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"></head><body bgcolor="#ffffff">
+<p><font color="#0000ff"><a href="mappaConKey.html"><img src="../../images/execute.gif" align="right" border="0" height="32" width="44"></a><a href="../index.html"><img src="../../images/return.gif" align="right" border="0" height="30" width="41"></a></font></p>
+
+<h3><font><font><font><font color="#006600">Codice sorgente del file libreria<font><font><font><font color="#006600">Leaflet</font></font></font></font>3.html <br>
+</font></font></font></font></h3>
+<span style="font-family: Courier New,Courier,monospace;">&lt;html&gt;</span><br style="font-family: Courier New,Courier,monospace;">
+<span style="font-family: Courier New,Courier,monospace;">
+&lt;head&gt;</span><br style="font-family: Courier New,Courier,monospace;">
+<span style="font-family: Courier New,Courier,monospace;">
+  &lt;title&gt;Terzo esempio&lt;/title&gt;</span><br style="font-family: Courier New,Courier,monospace;">
+<span style="font-family: Courier New,Courier,monospace;">
+&lt;!-- nel caso a: con librerie scaricate nella cartella leaflet--&gt;</span><br style="font-family: Courier New,Courier,monospace;">
+<span style="font-family: Courier New,Courier,monospace;">
+  &lt;link rel="stylesheet" href="leaflet/leaflet.css"&gt;</span><br style="font-family: Courier New,Courier,monospace;">
+<span style="font-family: Courier New,Courier,monospace;">
+  &lt;script src="leaflet/leaflet.js"&gt;&lt;/script&gt;</span><br style="font-family: Courier New,Courier,monospace;">
+<span style="font-family: Courier New,Courier,monospace;">
+  &lt;style&gt;</span><br style="font-family: Courier New,Courier,monospace;">
+<span style="font-family: Courier New,Courier,monospace;">
+  #miaMappa { height: 400px;</span><br style="font-family: Courier New,Courier,monospace;">
+<span style="font-family: Courier New,Courier,monospace;">
+  width: 600px;</span><br style="font-family: Courier New,Courier,monospace;">
+<span style="font-family: Courier New,Courier,monospace;">
+}</span><br style="font-family: Courier New,Courier,monospace;">
+<span style="font-family: Courier New,Courier,monospace;">
+  &lt;/style&gt;</span><br style="font-family: Courier New,Courier,monospace;">
+<span style="font-family: Courier New,Courier,monospace;">
+&lt;/head&gt;</span><br style="font-family: Courier New,Courier,monospace;">
+<span style="font-family: Courier New,Courier,monospace;">
+&lt;body&gt;</span><br style="font-family: Courier New,Courier,monospace;">
+<span style="font-family: Courier New,Courier,monospace;">
+&lt;h3&gt;La terza mappa con Leaflet (thunderforest.com/transport)&lt;/h3&gt;</span><br style="font-family: Courier New,Courier,monospace;">
+<span style="font-family: Courier New,Courier,monospace;">
+&lt;!-- contenitore della mappa --&gt;</span><br style="font-family: Courier New,Courier,monospace;">
+<span style="font-family: Courier New,Courier,monospace;">
+&lt;div id="miaMappa"&gt; &lt;/div&gt;</span><br style="font-family: Courier New,Courier,monospace;">
+<span style="font-family: Courier New,Courier,monospace;">
+&lt;script&gt;</span><br style="font-family: Courier New,Courier,monospace;">
+<span style="font-family: Courier New,Courier,monospace;">
+  //definiamo la mappa: posizione e dimensione</span><br style="font-family: Courier New,Courier,monospace;">
+<span style="font-family: Courier New,Courier,monospace;">
+  var map = L.map('miaMappa').setView([45.8109, 9.0885], 14); // coordinate di Como </span><br style="font-family: Courier New,Courier,monospace;">
+<span style="font-family: Courier New,Courier,monospace;">
+  //carica e inizializza la mappa base</span><br style="font-family: Courier New,Courier,monospace;">
+<span style="font-family: Courier New,Courier,monospace;">
+  var OSM_layer =L.tileLayer('http://{s}.tile.thunderforest.com/transport/{z}/{x}/{y}.png',</span><br style="font-family: Courier New,Courier,monospace;">
+<span style="font-family: Courier New,Courier,monospace;">
+    {attribution: '&amp;copy; &lt;a href="http://www.openstreetmap.org/copyright"&gt;OpenStreetMap&lt;/a&gt;'}).addTo(map);</span><br style="font-family: Courier New,Courier,monospace;">
+<span style="font-family: Courier New,Courier,monospace;">
+&lt;/script&gt;</span><br style="font-family: Courier New,Courier,monospace;">
+<span style="font-family: Courier New,Courier,monospace;">
+&lt;/body&gt;</span><br style="font-family: Courier New,Courier,monospace;">
+<span style="font-family: Courier New,Courier,monospace;">
+&lt;/html&gt;</span><pre><br> </pre>
+<p></p>
+</body></html>

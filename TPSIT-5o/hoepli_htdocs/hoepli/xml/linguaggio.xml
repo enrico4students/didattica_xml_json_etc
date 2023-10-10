@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<libro>
+<titolo>il linguaggio XML</titolo>
+<prodotto codice="1234" media="carta"></prodotto>
+<capitolo>Introduzione a XML
+<par>Che cosa e' il markup</par>
+<par>Che cosa e' XML</par>
+</capitolo>
+<capitolo>Sintassi di XML
+<par>Tutti i tag devono essere chiusi</par>
+<par>Tutti i tag devono essere nidificati correttamente</par>
+</capitolo>
+</libro>

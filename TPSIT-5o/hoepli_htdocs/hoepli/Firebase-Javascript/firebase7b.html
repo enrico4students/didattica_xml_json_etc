@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<HTML>
+  <HEAD>
+    <META CHARSET="UTF-8"/>
+    <TITLE>Esempi con Firebase </TITLE>
+    <!-- 1) connessione al driver/funzioni Firebase -->
+    <script 
+     src="https://www.gstatic.com/firebasejs/7.9.3/firebase.js">
+    </script>  
+  </HEAD>
+  <BODY>
+    <P>Esempio 7b: aggiunta di tre nodi con push() </P>
+    <H4 id="id01"></H4>
+    <script src="datiConnessione.js"></script>
+ 
+    <script>
+      // 2) definizione del nuovo nodo  
+      var path ='libri/hoepli/Niko/';
+      var newNodo = 'HTML1';               // nome del nodo 
+      var attributi = {                    // attributi del nodo
+        titolo: "HTML1 versione1",
+        argomento: "linguaggi"
+      };
+      // 3a) aggiungo nodo prima definito con push() 
+      var nuovoNodo1 = {};
+      nuovoNodo1[newNodo] = attributi;
+      firebase.database().ref(path).push(nuovoNodo1);
+      // 3b) aggiungo nodo con push() e successiva set() per gli attributi
+      var nodo = firebase.database().ref(path);
+      var nuovoNodo2 = nodo.push();
+      nuovoNodo2.set({'HTML2':{             // nodo e attributi 
+        titolo: "HTML1 versione2",
+        argomento: "linguaggi"
+      }});    
+      // 3c) aggiungo nodo con push() e contestuale set() per gli attributi
+      var nuovoNodo3 = nodo.push().set({'HTML3':{    
+        titolo: "HTML1 versione3",
+        argomento: "linguaggi"
+      }});
+
+      // 4) visualizza albero JSON
+      document.write("percorso Firebase:"+path);
+      var output = document.getElementById("id01");
+      var ref = firebase.database().ref().child(path);   
+      ref.on("value", function(snapshot){
+        output.innerHTML = JSON.stringify(snapshot.val(), null, 2);
+      });
+    </script>
+  </BODY>
+</HTML>

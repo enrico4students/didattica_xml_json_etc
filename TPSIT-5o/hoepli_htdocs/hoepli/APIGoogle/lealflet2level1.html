@@ -1,0 +1,55 @@
+﻿<html>
+<head> 
+<title>Esempio con livelli</title> 
+<!-- nel caso a: con librerie scaricate nella cartella leaflet--> 
+<link rel="stylesheet" href="leaflet/leaflet.css"> 
+<script src="leaflet/leaflet.js" ></script> 
+<style>
+  #miaMappa { height: 400px;
+  width: 600px;
+}
+</style>
+</head>
+<body>
+<!-- //https://geomappando.com/2015/12/20/crea-la-tua-prima-mappa-con-leaflet/ -->
+
+<h3>Mappa con tre livelli </h3>
+<!-- contenitore della mappa -->
+<div id="miaMappa"> </div>
+<script>
+ var miaMappa = L.map('miaMappa').setView([45.8109, 9.0885], 14); // coordinate di Como 
+  
+//1^ base map
+var OSM_layer =L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>'
+});
+ 
+//2^ base map
+var Esri_WorldStreetMap = L.tileLayer
+('http://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {attribution: 'Tiles &copy; Esri &mdash; Source: Esri'
+});
+ 
+//layer trasparente di etichette
+var CartoDB_label = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}.png', { attribution: '&copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
+})
+//array delle base maps
+var baseMaps = {
+"OSM": OSM_layer,
+"ESRI": Esri_WorldStreetMap
+};
+ 
+//array dei layer trasparenti
+var overlayMaps = {
+"Label": CartoDB_label
+};
+ 
+//carico la mappa base di default
+OSM_layer.addTo(miaMappa);
+ 
+//attivo il selettore di layers
+L.control.layers(baseMaps,overlayMaps).addTo(miaMappa);
+</script>
+ 
+</body>
+</html>
+
+ 

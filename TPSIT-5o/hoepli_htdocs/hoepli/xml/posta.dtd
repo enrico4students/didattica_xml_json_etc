@@ -1,0 +1,6 @@
+<!ELEMENT posta (messaggio)*>
+<!ELEMENT messaggio (mittente, destinatario, intestazione , testo )>
+<!ELEMENT mittente (#PCDATA)>
+<!ELEMENT destinatario (#PCDATA)>
+<!ELEMENT intestazione (#PCDATA)>
+<!ELEMENT testo (#PCDATA)>

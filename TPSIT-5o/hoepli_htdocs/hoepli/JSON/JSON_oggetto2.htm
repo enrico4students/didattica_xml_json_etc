@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h2>Crea un oggetto JSON da una stringa </h2>
+<script>
+var testo = '{"autori":[' +
+'{"nome":"Paolo","cognome":"Camagni" },' +
+'{"nome":"Riccardo","cognome":"Nikolassy" }]}';
+var oggetto = JSON.parse(testo);
+document.write("<h3>Il primo autore = " + oggetto.autori[0].nome +"<\/h3>");
+document.write("<h3>Il secondo autore = " + oggetto.autori[1].nome +"<\/h3>");
+</script>
+</body>
+</html>
+
+
+

@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2//EN">
+
+<html>
+<head>
+  <title>Codice da fare</title>
+  <meta http-equiv="Content-Type" content=
+  "text/html; charset=us-ascii">
+</head>
+
+<body bgcolor="#FFFFFF">
+  <p><font color="#0000FF"><a href="servlet/Dafare"><img src=
+  "images/execute.gif" align="right" border="0"></a><a href=
+  "index.html"><img src="images/return.gif" width="24" height="24"
+  align="right" border="0"></a></font></p>
+
+  <h2><font color="#FF0000">Esercitazione di laboratorio</font></h2>
+
+  <p><font size="2">&lt;HTML&gt;<br>
+&lt;BODY BGCOLOR=&quot;ffffcc&quot;&gt;&lt;h3&gt;Connessione a database Access &lt;/h3&gt;<br>
+&lt;h3&gt;&lt;font color=&quot;#FF0000&quot; face=&quot;Arial, Helvetica, sans-serif&quot;&gt;Scegli l'argomento di tuo interesse &lt;/font&gt;&lt;/h3&gt;<br>
+&lt;FORM ACTION=&quot;scegliDBBean.jsp&quot; METHOD=&quot;GET&quot;&gt;<br>
+  &lt;<font color="#0000FF">jsp:useBean </font>id=&quot;elenco&quot; class=&quot;<font color="#0000FF">mieiBean.ScelteDBAccess</font>&quot; /&gt;<br>
+&lt;H4&gt;&lt;font color=&quot;#0000FF&quot;&gt; <br>
+Scegli tra questi argomenti:<br>
+&lt;!-- dispongo nel Bean un combobox come risultato del metodo getArgomenti della classe ScelteDBAccess --&gt;<br>
+&lt;jsp:getProperty name=&quot;elenco&quot; property=&quot;argomenti&quot;/&gt;<br>
+&lt;INPUT TYPE=&quot;submit&quot; VALUE=&quot;Invia argomento&quot;&gt;<br>
+&lt;/font&gt;&lt;/H4&gt;<br>
+&lt;p&gt;&lt;strong&gt;Nota&lt;/strong&gt;: viene restituita una pagina &lt;font color=&quot;#FF0000&quot;&gt;scegliDBBean.jsp &lt;/font&gt;con la scelta effettuata&lt;font color=&quot;#FF0000&quot;&gt; &lt;/font&gt;&lt;/p&gt;<br>
+&lt;/FORM&gt;&lt;/BODY&gt; <br>
+&lt;/HTML&gt; </font></p>
+  <p>&nbsp;</p>
+  <p><strong>S<font size="2">celteDBAccess.java</font></strong></p>
+  <font size="2">package mieiBean; <br>
+  import java.io.*;<br>
+  import java.util.*;<br>
+  import java.sql.*;
+  <p>public class ScelteDBAccess implements java.io.Serializable <br>
+    {<br>
+  private String categoria, argomento, lingua;<br>
+  // dati per la connessione al database <br>
+  private final String protocollo = &quot;jdbc:ucanaccess://&quot;; // connessione libreria <br>
+  private final String mdbpath = &quot;tomcat/webapps/hoepli/esempioDB/&quot;; // percorso relativo<br>
+  private final String mdbName = &quot;proveJava.mdb;memory=false&quot;; // nome database <br>
+  // stringa completa di indirizzo per il database access <br>
+  String URL_mioDB = protocollo + mdbpath + mdbName;<br>
+  <br>
+  // definizione del driver per la connessione al DB Access<br>
+  private final String DRIVER = &quot;net.ucanaccess.jdbc.UcanaccessDriver&quot;;</p>
+  <p> public ScelteDBAccess (){<br>
+  inizializza();<br>
+  }<br>
+  private void inizializza(){<br>
+  // carico il driver <br>
+  try{<br>
+  Class.forName(DRIVER);<br>
+  } <br>
+  catch (ClassNotFoundException e) {<br>
+  System.err.println(&quot;Driver non trovato&quot; + e);<br>
+  } <br>
+  }</p>
+  <p> // metodi getter e setter <br>
+  public void setCategoria(String categoria){<br>
+  this.categoria = categoria;<br>
+  }<br>
+  public String getCategoria(){<br>
+  return categoria;<br>
+  }</p>
+  <p> public void setLingua(String lingua){<br>
+  this.lingua = lingua;<br>
+  }<br>
+  public String getLingua(){<br>
+  return lingua;<br>
+  }</p>
+  <p> public void setArgomento(String argomento){<br>
+  this.argomento = argomento;<br>
+  }<br>
+  public String getArgomento(){<br>
+  return argomento;<br>
+  }</p>
+  </font>
+  <p> <font size="2"><br>
+  public String getLingue(){<br>
+  String elenco = &quot;&quot;;<br>
+  String opzione = &quot;&quot;;<br>
+  // definizione della query <br>
+  String query = &quot;SELECT lingua FROM lingue&quot;;<br>
+  // stabilisco la connessione <br>
+  Connection connessione = null;<br>
+  try{<br>
+  // apro la connesione verso il database.<br>
+  connessione = DriverManager.getConnection(URL_mioDB);<br>
+  // ottengo lo Statement per interagire con il database<br>
+  Statement statement = connessione.createStatement();<br>
+  // interrogo il DBMS mediante una query SQL<br>
+  ResultSet resultSet = statement.executeQuery(query);<br>
+  // scorro e mostro i risultati<br>
+  elenco=&quot;&lt;select name=\&quot;linguaScelta\&quot;&gt;&quot;;<br>
+  while (resultSet.next()){<br>
+  String lingua = resultSet.getString(1);<br>
+  opzione = &quot;&lt;option value = \&quot;&quot; + lingua + &quot;\&quot;&gt;&quot;+lingua+&quot;&lt;/option&gt;&quot;;<br>
+  elenco = elenco + opzione;<br>
+  }<br>
+  elenco = elenco +&quot;&lt;/select&gt;&quot;;<br>
+  System.out.println(elenco);<br>
+  } <br>
+  catch (SQLException e) // gestione dell'errore <br>
+  {<br>
+  System.out.println(&quot;Errore nella connessione : &lt;br&gt;&quot;);<br>
+  System.out.println(e);<br>
+  System.exit(1); <br>
+  } <br>
+  finally{<br>
+  if (connessione != null){<br>
+  try{<br>
+  connessione.close();<br>
+  } <br>
+  catch (Exception e) // gestione dell'errore<br>
+  {<br>
+  System.out.println(&quot;Errore nella chiusura connessione :&lt;br&gt;&quot;);<br>
+  System.out.println(e);<br>
+  }<br>
+  }<br>
+  }<br>
+  return elenco;<br>
+  }</font></p>
+  <p><font size="2"> public String getArgomenti(){<br>
+  String elenco = &quot;&quot;;<br>
+  String opzione = &quot;&quot;;<br>
+  // definizione della query <br>
+  String query = &quot;SELECT argomento FROM argomenti&quot;;<br>
+  // if (&quot;inglese&quot;.equals(lingua))<br>
+  // stabilisco la connessione <br>
+  Connection connessione = null;<br>
+  try{<br>
+  // apro la connesione verso il database.<br>
+  connessione = DriverManager.getConnection(URL_mioDB);<br>
+  // ottengo lo Statement per interagire con il database<br>
+  Statement statement = connessione.createStatement();<br>
+  // interrogo il DBMS mediante una query SQL<br>
+  ResultSet resultSet = statement.executeQuery(query);<br>
+  // scorro e creo la stringa HTML che genera il combobox <br>
+  elenco=&quot;&lt;select name=\&quot;argomentoScelto\&quot;&gt;&quot;;<br>
+  while (resultSet.next()){<br>
+  String argomento = resultSet.getString(1);<br>
+  opzione = &quot;&lt;option value = \&quot;&quot; + argomento + &quot;\&quot;&gt;&quot;+argomento+&quot;&lt;/option&gt;&quot;;<br>
+  elenco = elenco + opzione;<br>
+  }<br>
+  elenco = elenco +&quot;&lt;/select&gt;&quot;;<br>
+  System.out.println(elenco);<br>
+  } <br>
+  catch (SQLException e) // gestione dell'errore <br>
+  {<br>
+  System.out.println(&quot;Errore nella connessione : &lt;br&gt;&quot;);<br>
+  System.out.println(e);<br>
+  System.exit(1); <br>
+  } <br>
+  finally{<br>
+  if (connessione != null){<br>
+  try{<br>
+  connessione.close();<br>
+  } <br>
+  catch (Exception e) // gestione dell'errore<br>
+  {<br>
+  System.out.println(&quot;Errore nella chiusura connessione :&lt;br&gt;&quot;);<br>
+  System.out.println(e);<br>
+  }<br>
+  }<br>
+  }<br>
+  return elenco;<br>
+  }</font></p>
+  <p> <font size="2"><br>
+  }<br>
+  </font>  </p>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<html>
+<script language="javascript"> 
+/*Questa funzione legga il valore passato come parametro e dato il valore
+aggiunge delle opzioni al secondo campo*/
+function selezionaOpzioni(scelta) { 
+/*Resetto le opzioni precedenti del campo*/
+var campo_derivato = document.form.campo_derivato; 
+campo_derivato.options.length = 0;
+/*verifico la scelta e aggiungo i campi*/
+if (scelta == "1") { 
+campo_derivato.options[campo_derivato.options.length] = new Option('Pomodoro'); 
+campo_derivato.options[campo_derivato.options.length] = new Option('Mozzarella'); 
+campo_derivato.options[campo_derivato.options.length] = new Option('Basilico');
+} 
+if (scelta == "2") {
+campo_derivato.options[campo_derivato.options.length] = new Option('Pomodoro');  
+campo_derivato.options[campo_derivato.options.length] = new Option('Aglio');
+campo_derivato.options[campo_derivato.options.length] = new Option('Origano');
+} 
+if (scelta == "3") {
+campo_derivato.options[campo_derivato.options.length] = new Option('Pomodoro'); 
+campo_derivato.options[campo_derivato.options.length] = new Option('Funghi');
+campo_derivato.options[campo_derivato.options.length] = new Option('Olive'); 
+campo_derivato.options[campo_derivato.options.length] = new Option('Carciofini'); 
+} 
+} 
+/*questa funzione prende il valore del campo_princilale
+e fa una chiamata alla funzione selezionaOpzioni sfruttando il parametro*/
+function aggiornaOpzioni(scelta){
+	var valore_selezionato = document.form.campo_principale.selectedIndex;
+	var campo = document.form.campo_principale.options;
+	selezionaOpzioni(campo[valore_selezionato].value);
+}
+</script>
+<title>Esempio - Select Dinamica Realizzata con Javascript</title> 
+
+<form name="form"> 
+Seleziona Pizza:
+<select name="campo_principale" size="1" onChange="aggiornaOpzioni();">
+<option value="1">Pizza Margherita</option> 
+<option value="2">Pizza Marinara</option> 
+<option value="3">Pizza Capricciosa</option> 
+</select> 
+<br /> 
+<br /> 
+Seleziona Ingrediente:
+<select name="campo_derivato" size="1"> 
+</select> 
+</form> 

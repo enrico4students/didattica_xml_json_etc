@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<TITLE>Esempio di Servlet con GET </TITLE>
+</HEAD>
+<BODY>
+<p>&nbsp;</p>
+<h2><font color="#FF0000">Esercitazione di laboratorio</font></h2>
+<p><font color="#006600">Codice sorgente derby1.jsp </font></p>
+<p>&nbsp;</p>
+<FORM ACTION="ciaoMondo.jsp" METHOD="GET">
+  <p>&lt;HTML&gt;<br>
+    &lt;BODY&gt;&lt;TITLE&gt;JSP e database Derby&lt;/TITLE&gt;&lt;/BODY&gt;<br>
+    &lt;H2&gt;JSP e database Derby &lt;/H2&gt;<br>
+    &lt;%@ page import=&quot;java.sql.*&quot; %&gt;<br>
+    &lt;TABLE BORDER=&quot;1&quot;&gt;<br>
+    &lt;%<br>
+// carico il driver per la connessione al DB MySQL<br>
+String DRIVER = &quot;org.apache.derby.jdbc.EmbeddedDriver&quot;;<br>
+String protocollo = &quot;jdbc:derby:&quot;; // connessione alla libreria<br>
+String dbpath = &quot;tomcat/webapps/hoepli/esempioDB/&quot;; // percorso assoluto <br>
+String dbName = &quot;esempiTPSIT3;memory=false&quot;; // nome database <br>
+String user = &quot;&quot;; // nome utente <br>
+String psw = &quot;&quot;; // password <br>
+String URL_mioDB = protocollo + dbpath + dbName; // riferimento completo al database <br>
+// definizione della query <br>
+String query = &quot;SELECT * FROM alunni&quot;;<br>
+<br>
+try{<br>
+Class.forName(DRIVER);<br>
+} <br>
+catch (ClassNotFoundException e) {<br>
+System.err.println(&quot;Driver non trovato&quot; + e);<br>
+} </p>
+  <p> Connection connessione = null;<br>
+  try{ // apro la connessione verso il database<br>
+  connessione = DriverManager.getConnection(URL_mioDB, user, psw);<br>
+  } <br>
+  catch (Exception e){<br>
+  System.err.println(&quot;Errore nella connessione col database: &quot; + e);<br>
+  } </p>
+  <p> try{ // esecuzione della query<br>
+  Statement statement= connessione.createStatement();<br>
+  ResultSet rs = statement.executeQuery(query); <br>
+  out.println(&quot;&lt;pre&gt;&quot;);<br>
+  out.println(&quot;&lt;b&gt;Mat.&quot;+&quot;&amp;#9;&quot;+&quot;cognome&quot;+&quot;&amp;#9;&quot;+&quot;nome&quot;+&quot;&amp;#9;&quot;+&quot;classe&quot;+&quot;&amp;#9;&quot;+&quot;sesso&lt;/b&gt;&quot;);<br>
+  while (rs.next()) { // scorro il resultSet e mostro i risultati<br>
+  int mat = rs.getInt(1);<br>
+  String cog = rs.getString(&quot;cognome&quot;);<br>
+  String nom = rs.getString(3);<br>
+  int classe = rs.getInt(&quot;classe&quot;); <br>
+  String sez = rs.getString(&quot;sezione&quot;);<br>
+  String sex = rs.getString(&quot;sesso&quot;);<br>
+  out.println(mat+&quot;&amp;#9;&quot;+cog+&quot;&amp;#9;&quot;+nom+&quot;&amp;#9;&quot;+classe+sez+&quot;&amp;#9;&quot;+sex);<br>
+  }<br>
+  out.println(&quot;&lt;/pre&gt;&quot;);<br>
+  }<br>
+  catch (Exception e){<br>
+  System.err.println(e);<br>
+  } <br>
+  try{ // chiusura connessione <br>
+  connessione.close();<br>
+  } <br>
+  catch (Exception e) {<br>
+  System.err.println(e);<br>
+  }<br>
+  out.close(); // chiusura oggetto di output <br>
+  %&gt;<br>
+&lt;/TABLE&gt;<br>
+&lt;/BODY&gt;<br>
+&lt;/HTML&gt;<br>
+  </p>
+  <p></p>
+</FORM>
+</BODY>
+</HTML>

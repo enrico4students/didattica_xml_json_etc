@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<DISCHI
+xmlns="http://magistricumacini.it/CD"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance“
+xsi:schemaLocation="http://magistricumacini.it/DISCHI.xsd“
+>
+<canzone>
+  <titolo>Inno di Mameli</title>
+  <length>2:22</length>
+</canzone>
+
+<canzone>
+  <artista>Santana</artist>
+  <title>Samba Pa Ti</title>
+  <commento>
+  Il pezzo piu'conosciuto
+  </commento>
+  <durata>3:26</durata>
+</canzone>
+</DISCHI>

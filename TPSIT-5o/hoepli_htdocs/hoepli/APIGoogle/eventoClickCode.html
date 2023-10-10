@@ -1,0 +1,15 @@
+<html>
+<head>
+<title>Esercitazione per gli studenti</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+
+<body bgcolor="#FFFFFF">
+<p><font color="#0000FF"><a href="eventoClick.html"><img src="../../images/execute.gif" width="44" height="32" border="0" align="right"></a><a href="../index.html"><img src="../../images/return.gif" width="41" height="30" align="right" border="0"></a></font></p>
+<h3><font color="#006600">Codice sorgente del file eventoClick.html</font></h3>
+<pre><font color="#0000FF">&lt;HTML&gt;&lt;HEAD&gt;<br>&lt;LINK HREF=&quot;/maps/documentation/javascript/examples/default.css&quot; REL=&quot;stylesheet&quot;&gt;<br>&lt;SCRIPT TYPE=&quot;text/javascript&quot;<br>SRC=&quot;https://maps.googleapis.com/maps/api/js?key=AIzaSyChTsh9mTgKrBBzRAdmRVFLBTDWG__5aWk&amp;sensor=false&quot;&gt;<br>&lt;/script&gt;<br>&lt;SCRIPT&gt;<br>var map;            // dichiarazione oggetto map di tipo globale<br>var opzioni = {     // dichiarazione opzioni della mappa<br>  zoom: 10,          <br>  center: new google.maps.LatLng(45.8109,9.0885), // coordinate di Como <br>  mapTypeId: google.maps.MapTypeId.ROADMAP        // tipo di mappa <br>}<br>//funzione richiamata all'apertura del body<br>function inizializza(){<br>  // creazione dell'oggetto mappa vero e proprio <br>  map = new google.maps.Map(document.getElementById('mappa'),opzioni);<br>  // aggiunta di un ascoltatore di evento per il click<br>  google.maps.event.addListener(map,'click', function(event){<br>    // scrivo nella casella di testo la latitudine utilizzando i metodo lat()<br>    document.getElementById('lat').innerText=event.latLng.lat();<br>    // scrivo nella casella di testo la longitudine utilizzando i metodo lng()<br>    document.getElementById('lng').innerText=event.latLng.lng();<br>  });<br>}<br>&lt;/SCRIPT&gt;<br>&lt;/HEAD&gt;<br>&lt;TITLE&gt;Eventi dulla mappa &lt;/TITLE&gt;<br>&lt;BODY onload=&quot;inizializza()&quot;&gt;<br>&lt;TABLE&gt;&lt;TR&gt;&lt;TD&gt;Latitudine&lt;TD&gt;&lt;INPUT TYPE=&quot;text&quot; ID=&quot;lat&quot; SIZE=15&gt;<br>&lt;TR&gt;&lt;TD&gt;Longitudine&lt;TD&gt;&lt;INPUT TYPE=&quot;text&quot; ID=&quot;lng&quot; SIZE=15&gt;&lt;/TABLE&gt;<br>&lt;DIV ID=&quot;mappa&quot; STYLE=&quot;position:absolute;left:10px;top:70px;height:300px;width:500px&quot;&gt;&lt;/DIV&gt;<br>&lt;/BODY&gt;&lt;/HTML&gt;<br></font></pre>
+<p></p>
+<pre>&nbsp;
+</pre>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<html>
+<head>
+   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChTsh9mTgKrBBzRAdmRVFLBTDWG__5aWk&libraries=places"></script>
+
+<script>
+
+var map;
+var service;
+var infoWindow;
+var temp;
+
+   function province (e) {
+      var riga = e.options[e.selectedIndex].value;
+      ajax=new XMLHttpRequest();
+      ajax.onreadystatechange=function()
+      {
+         if (ajax.readyState==4 && ajax.status==200)
+         {
+            document.getElementById('prov').innerHTML=ajax.responseText;
+         }
+      }
+      ajax.open('GET','scelto.php?quale=2&stringa='+riga,true);
+      ajax.send();
+   }
+   function comuni (e) {
+      var riga = e.options[e.selectedIndex].value;
+      ajax=new XMLHttpRequest();
+      ajax.onreadystatechange=function()
+      {
+         if (ajax.readyState==4 && ajax.status==200)
+         {
+            document.getElementById('comuni').innerHTML=ajax.responseText;
+         }
+      }
+
+      ajax.open('GET','scelto.php?quale=3&stringa='+riga,true);
+      ajax.send();
+   }
+
+   function regioni () {
+      ajax=new XMLHttpRequest();
+     ajax.onreadystatechange=function()
+     {
+
+      if (ajax.readyState==4 && ajax.status==200)
+      {
+      document.getElementById("risposta").innerHTML=ajax.responseText;
+   }
+}
+   var riga=
+   ajax.open('GET','scelto.php?quale=1',true);
+   ajax.send();
+}
+
+function creaMarker(e)//funzine che crea il marker a seconda della scelta dell'utente
+      {
+         var riga = e.options[e.selectedIndex].value;
+         temp = riga.split("/");
+
+         document.getElementById("mappa").innerHTML="";
+         var opzioni =
+            {
+               zoom: 16,
+               center: new google.maps.LatLng(temp[1], temp[2]), 
+               mapTypeId: google.maps.MapTypeId.ROADMAP
+            }
+            map = new google.maps.Map(document.getElementById("mappa"), opzioni);
+            
+            infoWindow = new google.maps.InfoWindow();
+            marker = new google.maps.Marker 
+            ({
+               map: map,
+               draggable: false,
+               position: new google.maps.LatLng(temp[1], temp[2]),
+               title: temp[0],
+            });            
+      }
+
+      function trovaluoghi() {//funzione chiamata quando dopo che l'utente scrive la distanza e clicca scansiona
+         var dista = document.getElementById('dist').value;
+         var service = new google.maps.places.PlacesService(map);
+        service.nearbySearch({
+          location: new google.maps.LatLng(temp[1], temp[2]),
+          radius: dista,
+         // type: 'pharmacy',
+        }, processResults);
+      }
+
+      function processResults(results, status, pagination) {//chiamata di funzine da trovaluoghi()
+        if (status !== google.maps.places.PlacesServiceStatus.OK) {
+          return;
+        } else {
+          createMarkers(results);
+
+          if (pagination.hasNextPage) {
+            var moreButton = document.getElementById('more');
+
+            moreButton.disabled = false;
+
+            moreButton.addEventListener('click', function() {
+              moreButton.disabled = true;
+              pagination.nextPage();
+            });
+          }
+        }
+      }
+
+      function createMarkers(places) {//chiamata da processResults()
+        var bounds = new google.maps.LatLngBounds();
+        var listaluoghi = document.getElementById('risultatitext');
+        listaluoghi.innerHTML ="";
+        for (var i = 0, place; place = places[i]; i++) {
+          
+
+          var marker = new google.maps.Marker({
+            map: map,
+            title: place.name,
+            position: place.geometry.location
+          });
+          listaluoghi.innerHTML += '<li>' + place.name + '</li>';
+        }
+        
+        google.maps.event.addListener(marker, 'click', function() {
+          service.getDetails(place, function(result, status) {
+            if (status !== google.maps.places.PlacesServiceStatus.OK) {
+              console.error(status);
+              return;
+            }
+            infoWindow.setContent(result.name);
+            infoWindow.open(map, marker);
+          });
+        });
+      }
+
+
+</script>
+</head>
+<body onload="regioni()">
+   <b>Scegliere la regione:</b>
+   <div id="risposta"></div>
+</p>
+<div id="mappa" style="position:absolute; top:100px; left:450px; height:750px; width:750px;"></div>
+</body>
+</html>

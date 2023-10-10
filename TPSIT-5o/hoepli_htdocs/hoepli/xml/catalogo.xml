@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE Catalogo SYSTEM "catalogo.dtd">
+<Catalogo>
+<Film cod="f1" formato="DVD" voto="10">
+<Titolo>Bohemian Rhapsody</Titolo>
+<Regista>Bryan Singer,</Regista>
+<Attore>Rami Malek</Attore>
+<Attore>Lucy Boynton</Attore>
+<Attore>Gwilym Lee</Attore>
+<Genere>Musicale</Genere>
+</Film>
+<Film cod="f2" formato="DIVX">
+<Titolo>Fantasia</Titolo>
+<Regista> Samuel Armstrong</Regista>
+<Genere>Animazione</Genere>
+<originale>si</originale>
+</Film>
+</Catalogo>

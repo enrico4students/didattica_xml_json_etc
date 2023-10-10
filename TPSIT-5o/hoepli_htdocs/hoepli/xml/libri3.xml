@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<libro>
+<titolo>Libro di informatica</titolo>
+<capitolo>
+<titolo>Documento in stile XML</titolo>
+<testo>testo testo testo</testo>
+</capitolo>
+</libro>

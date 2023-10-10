@@ -1,0 +1,31 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+  <title>Quarto esempio</title>
+
+  
+<!-- nel caso a: con librerie scaricate nella cartella leaflet-->
+  
+  <link rel="stylesheet" href="leaflet/leaflet.css">
+
+  
+  <script src="leaflet/leaflet.js"></script>
+  
+  <style>
+  #miaMappa { height: 400px;
+  width: 600px;
+}
+  </style>
+</head><body>
+<h3>La terza mappa con Leaflet (thunderforest.com/transport)</h3>
+
+<!-- contenitore della mappa -->
+<div id="miaMappa"> </div>
+
+<script>
+  //definiamo la mappa: posizione e dimensione
+  var map = L.map('miaMappa').setView([45.8109, 9.0885], 14); // coordinate di Como 
+  //carica e inizializza la mappa base
+  var OSM_layer =L.tileLayer('http://{s}.tile.Mapbox.org/{z}/{x}/{y}.png',
+    {attribution: '&copy; <a href="http://www.Mapbox.org/copyright">OpenStreetMap</a>'}).addTo(map);
+</script>
+</body></html>

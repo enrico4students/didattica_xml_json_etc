@@ -1,0 +1,93 @@
+<html>
+<head>
+<title>ServletDB5.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+
+<body bgcolor="#FFFFFF">
+<p><font color="#0000FF"><a href="servlet/Dafare"><img src="images/execute.gif" align="right" border="0"></a><a href="index.html"><img src="images/return.gif" width="24" height="24" align="right" border="0"></a></font></p>
+<h2><font color="#006600">Codice sorgente della classe ServletDB5.java</font></h2>
+<h3>// accesso al database MySQL con query parametrica </h3>
+<pre><font color="#0000FF">import</font> java.io.*;
+<font color="#0000FF">import</font> javax.servlet.*;
+<font color="#0000FF">import</font> javax.servlet.http.*;
+<font color="#0000FF">import</font> java.sql.*;
+
+<font color="#0000FF">public class</font> <font color="#FF0000">ServletDB5</font> <font color="#0000FF">extends</font> HttpServlet 
+{<br> <font color="#0000FF">private final String</font> url         = &quot;<font color="#FF00FF">jdbc:mysql://</font>&quot;;<br> <font color="#0000FF">private final String</font> serverName  = &quot;<font color="#FF00FF">localhost</font>&quot;;<br> <font color="#0000FF">private final String</font> portNumber  = &quot;<font color="#FF00FF">:3305/</font>&quot;;<br> <font color="#0000FF">private final String</font> databaseName= &quot;<font color="#FF00FF">provejava</font>&quot;;<br> <font color="#0000FF">private final String</font> userName    = &quot;<font color="#FF00FF">root</font>&quot;;<br> <font color="#0000FF">private final String</font> password    = &quot;&quot;;<br> <br> <font color="#0000FF">public void </font><strong>doGet</strong>(HttpServletRequest request, HttpServletResponse response)<br> <font color="#0000FF">throws</font> IOException, ServletException<br> {
+   response.setContentType(&quot;text/html&quot;); 
+   PrintWriter out = response.getWriter(); 
+   String scelta = request.getParameter( &quot;scelta&quot; );
+
+ <em>  // carico il driver per la connessione al DB MySQL
+</em>  <font color="#0000FF"> private final String</font> DRIVER = &quot;<font color="#FF00FF">com.mysql.jdbc.Driver</font>&quot;;<br><em> 
+  // riferimento al database: connessione Mysql
+</em>   <font color="#0000FF">String</font> URL_mioDB = &quot;jdbc:mysql://localhost:3305/proveJava&quot;;
+   <font color="#0000FF">try</font> 
+   {
+     // carico il driver
+     Class.forName(DRIVER);
+   } 
+   <font color="#0000FF">catch</font> (ClassNotFoundException e1) 
+   {
+     // il driver non pu&ograve; essere caricato.
+     <font color="#0000FF">System.out.println</font>(&quot;Driver non trovato...&quot;);
+     <font color="#0000FF">System.exit(1)</font>; 
+   }
+   // crea una pagina HTML e la invia al client 
+   out.println(&quot;<font color="#009900">&lt;html&gt;</font>&quot;);
+   out.println(&quot;<font color="#009900">&lt;head&gt;</font>&quot;);
+   
+   // icone per visualizzare codice o ritornare al menu'
+   &lt; omissis&gt;
+
+   // inizio echo contenuto pagina html 
+   out.println(&quot;<font color="#009900">&lt;title&gt;Servlet connessa a database MySQL&lt;/title&gt;</font>&quot;);
+   out.println(&quot;<font color="#009900">&lt;/head&gt;</font>&quot;);
+   out.println(&quot;<font color="#009900">&lt;body bgcolor=\&quot;white\&quot;</font>&gt;&quot;);
+   out.println(&quot;<font color="#009900">&lt;h3</font><font color="#009900">&gt;Contenuto tabella Amici del database MySQL&lt;/h3&gt;</font>&quot;);
+   out.println(&quot;<font color="#009900">&lt;h4&gt;Sesso selezionato = &quot;+scelta+&quot;&lt;/h4&gt;</font>&quot;);</pre>
+<pre>   // definizione della query 
+   <font color="#0000FF">String</font> query = &quot;<font color="#FF00FF">SELECT * FROM Amici where sesso='</font>&quot;+scelta+&quot;'&quot;;
+   <font color="#0000FF">if</font> (scelta.equals(&quot;X&quot;))
+     query = <font color="#FF00FF">&quot;SELECT Cognome, Nome, Indirizzo, Citta FROM Amici&quot;</font>;
+ 
+   // stabilisco la connessione 
+   Connection connessione = <font color="#0000FF">null</font>;
+   <font color="#0000FF">try</font>
+   {
+ <em>    // apro la connesione verso il database.
+ </em>    connessione = DriverManager.getConnection(URL_mioDB,userName,password);
+  <em>   // ottengo lo Statement per interagire con il database
+ </em>    Statement statement = connessione.createStatement();
+ <em>    // interrogo il DBMS mediante una query SQL
+ </em>    ResultSet resultSet = statement.executeQuery(query);
+    
+     // Scorro e mostro i risultati.
+     out.println(&quot;<font color="#009900">Query di ricerca</font> &quot;+query);
+<em>  </em>   out.println(&quot;<font color="#009900">&lt;pre&gt;</font>&quot;);<br>     out.println(&quot;<font color="#009900">&lt;b&gt;cognome&quot;+&quot;&amp;#9;&quot;+&quot;nome&quot;+&quot;&amp;#9;&quot;+&quot;indirizzo&quot;+&quot;&amp;#9;&quot;+&quot;citta&lt;/b&gt;</font>&quot;);<br> <font color="#0000FF">    while</font> (resultSet.next()) 
+     {
+       <font color="#0000FF">String</font> cognome = resultSet.getString(1);
+       <font color="#0000FF">String</font> nome = resultSet.getString(2);
+       <font color="#0000FF">String</font> indirizzo = resultSet.getString(3);
+       <font color="#0000FF">String</font> citta = resultSet.getString(4);
+       out.println(cognome+&quot;<font color="#009900">&amp;#9;</font>&quot;+nome+&quot;<font color="#009900">&amp;#9;</font>&quot;+indirizzo+&quot;<font color="#009900">&amp;#9;</font>&quot;+citta);
+     }
+     out.println(&quot;<font color="#009900">&lt;/pre&gt;</font>&quot;);
+   } 
+   <font color="#0000FF">catch</font> (SQLException e) 
+   {
+   <em>// gestione dell'errore 
+   </em>  out.println(&quot;Errore nella connessione : &lt;br&gt;&quot;);
+     out.println(e);
+     <font color="#0000FF">System.exit</font>(1); 
+   } 
+   <font color="#0000FF">finally</font> 
+   {<br>     <font color="#0000FF">if</font> (connessione != <font color="#0000FF">null</font>)
+     {<br>       <font color="#0000FF">try</font> 
+       {<br>         connessione.close();<br>       } <br>       <font color="#0000FF">catch</font> (Exception e) <br>       {<br>        // gestione dell'errore<br>        out.println(<font color="#009900">&quot;Errore nella chiusura connessione :&lt;br&gt;</font>&quot;);<br>        out.println(e);<br>       }<br>     }<br>   }<br>
+  // chiusura pagina HTML <br>  out.println(<font color="#009900">&quot;&lt;/body&gt;&quot;</font>);<br>  out.println(<font color="#009900">&quot;&lt;/html&gt;&quot;</font>);<br> }<br>}</pre>
+<pre>&nbsp;
+</pre>
+</body>
+</html>

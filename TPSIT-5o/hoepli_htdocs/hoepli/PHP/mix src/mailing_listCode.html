@@ -1,0 +1,56 @@
+<html>
+<head>
+<title>Esercitazione per gli studenti</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+
+<body bgcolor="#FFFFFF">
+<p><font color="#0000FF"><a href="mailing_list.php"><img src="../images/execute.gif" width="44" height="28" border="0" align="right"></a><a href="index.html"><img src="../images/return.gif" width="41" height="30" align="right" border="0"></a></font></p>
+<h3><font color="#006600">Codice sorgente del file 
+
+
+ 
+
+
+ 
+
+
+ mailing_list.php
+
+</font></h3>
+<pre>&lt;?php<br>// tecnica postback per rientare nella stessa pagina<br>if (isset($_POST['messaggio']) &amp;&amp; isset($_POST['oggetto'])){  // seconda volta <br>  //accesso dopo inserimento dati - connessione a MySQL  <br>  $db = new mysqli(&quot;localhost&quot;, &quot;root&quot;, &quot;&quot;, &quot;provephp&quot;);<br>  // prova a connettersi al database <br>  if (mysqli_connect_errno()) {<br>    printf(&quot;Connessione non effettuata: %s\n&quot;, mysqli_connect_error());<br>    exit();<br>  }<br>  $query = &quot;SELECT * FROM Indirizzi&quot;;    // predisposizione della query<br>  if ($res = $db-&gt;query($query)) {      // esecuzione query<br>    printf(&quot;  - la select ha individuato %d righe.\n&quot;, $res-&gt;num_rows);<br>  }<br>  // per cambiare il database si pu&ograve; utilizzare  $db-&gt;select_db(&quot;provejava&quot;);</pre>
+<pre> // ritorna il nome current default database */
+   if ($res = $db-&gt;query(&quot;SELECT DATABASE()&quot;)) {
+   $row = $res-&gt;fetch_row();
+   printf(&quot;Il database di default &egrave;: %s\n&quot;, $row[0]);
+   $res-&gt;close();
+   }</pre>
+<pre> // scrittura intestazione
+   $intestazioni = &quot;From:mittente@hoepli.com \r\nReply To:mittente@hoepli.com&quot;;
+   $i = 0; // contatore di mail inviate
+   $oggetto = $_POST['oggetto']; // lettura oggetto e testo messaggio da POST 
+   $messaggio = $_POST['messaggio'];
+   foreach( $res as $row ) { // ciclo che estrae i record restituiti da SQL
+   $dest = $row['Email']; // $dest contiene l'email del destinatario
+   $i++;
+   $x = mail($dest, $oggetto, $messaggio, $intestazioni); // invio della mail
+   }
+   echo &quot;&lt;HR&gt;Sono state inviate $i email&lt;HR&gt;&quot;;
+   echo &quot;&lt;a href='&quot;.$_SERVER['PHP_SELF'].&quot;'&gt;Torna allo script&lt;/A&gt;&quot;;
+   $res-&gt;close();
+   $db-&gt;close();
+   }
+   else{ // mostro il form
+   echo &quot;
+ &lt;FORM name='form' method='post' actio n='&quot;.$_SERVER['PHP_SELF'].&quot;'&gt;
+ &lt;B&gt;OGGETTO&lt;/B&gt;&lt;INPUT TYPE='text' NAME='oggetto'&gt;&lt;BR&gt;
+ &lt;TEXTAREA NAME='messaggio' cols='70' rows='5'&gt;&lt;/TEXTAREA&gt;&lt;BR&gt;
+ &lt;INPUT TYPE='submit' VALUE='Invia Email ai clienti'&gt;
+ &lt;/FORM&gt;&lt;/BODY&gt;&lt;/HTML&gt;&quot;;
+   }
+   ?&gt;</pre>
+<pre></pre>
+<pre>&nbsp;
+</pre>
+</body>
+</html>

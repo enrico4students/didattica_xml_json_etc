@@ -1,0 +1,21 @@
+<html>
+<head>
+<title>Esercitazione per gli studenti</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+
+<body bgcolor="#FFFFFF">
+<p><font color="#0000FF"><a href="carrelloEredita.php"><img src="../images/execute.gif" width="44" height="32" border="0" align="right"></a><a href="index.html"><img src="../images/return.gif" width="41" height="30" align="right" border="0"></a></font></p>
+<h3><font color="#006600">Codice sorgente del file carrelloEredita.php </font></h3>
+<pre><font color="#0000FF">&lt;?php <br>include &quot;Carrello.php&quot;;<br>class MioCarrello extends Carrello<br>{<br>  //definizione di una nuova propriet&agrave;<br>  var $prezzi = array();<br>  <br>  function setPrezzo($a,$p){<br>    //ciclo di ricerca del prodotto<br>    for ($i = 0; $i &lt; count($this-&gt;articoli); $i++){<br>      if ($this-&gt;articoli[$i] == $a)    // verifico se &egrave; presente nel carrello <br>        $this-&gt;prezzi[$i] = $p;         // salvo la posizione<br>    }<br>  }<br> //metodo di stampa a video dei prodotti   <br>  function stampa(){<br>    for ($i = 0; $i &lt; count($this-&gt;articoli); $i++){<br>      echo &quot;&lt;B&gt;Articoli:&lt;/B&gt; &quot; .$this-&gt;articoli[$i] .&quot;&lt;BR&gt;&quot;;<br>      echo &quot;&lt;B&gt;Quantita':&lt;/B&gt; &quot; .$this-&gt;quantita[$i] .&quot;&lt;BR&gt;&quot;;<br>      echo &quot;&lt;B&gt;Prezzo:&lt;/B&gt; &quot; .$this-&gt;prezzi[$i] .&quot;&lt;BR&gt;&quot;;<br>    }<br>  }<br>}</font></pre>
+<pre>//istanzio un nuovo oggetto della nuova classe derivata
+   $nuovo_c = new MioCarrello;
+   //aggiungo un articolo
+   $nuovo_c-&gt;aggiungi_carrello(&quot;Acquarello&quot;, 3);
+   //aggiungo il prezzo all&rsquo;articolo Acquarello
+   $nuovo_c-&gt;setPrezzo(&quot;Acquarello&quot;, 12);
+   $nuovo_c-&gt;stampa();</pre>
+<pre>?&gt;</pre>
+<pre><font color="#0000FF"> <strong> </strong></font></pre>
+</body>
+</html>

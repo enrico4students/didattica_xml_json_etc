@@ -1,0 +1,64 @@
+<html>
+<head>
+<title>Esercitazione per gli studenti</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+
+<body bgcolor="#FFFFFF">
+<p><font color="#0000FF"><a href="client.php"><img src="../images/execute.gif" width="44" height="32" border="0" align="right"></a><a href="index.html"><img src="../images/return.gif" width="41" height="30" align="right" border="0"></a></font></p>
+<h3><font color="#006600">Codice sorgente del file client.php</font></h3>
+<pre>&lt;?php<br>//Disabilito il blocco dello script <br>set_time_limit(0); <br>echo &quot;&lt;B&gt;Esecuzione socket client&lt;/B&gt;&lt;HR&gt;&quot;;<br>//Apro il file da inviare e controllo se esiste<br>if(!($file=@fopen(&quot;./programmi/PIPPO.TXT&quot;,&quot;r&quot;))){<br>  echo &quot;ERRORE DI APERTURA FILE&lt;BR&gt;&quot;;<br>  exit;<br>}<br>else<br>  echo &quot;APERTURA FILE pippo.txt&lt;BR&gt;&quot;;</pre>
+<pre>//Definizione indirizzo IP e port TCP del server
+   $indirizzo='127.0.0.1';
+   $porta=10000;
+   //Definizione Array associativo con tali informazioni
+   $server=array('indirizzoIP'=&gt;$indirizzo,'port'=&gt;$porta);
+   //Creo il socket con 3 parametri 
+   //famiglia del protocollo, tipo di comunicazione, protocollo per quel dominio
+   if(!($socket=@socket_create(AF_INET, SOCK_STREAM, SOL_TCP))){
+   echo socket_strerror(socket_last_error($socket));
+   exit;
+   }</pre>
+<pre>//Connessione al server e verifica errore eventuale
+   if(!($conn=@socket_connect($socket,$server['indirizzoIP'],$server['port']))){
+   //Stampa codice errore
+   echo socket_strerror(socket_last_error($socket));
+   exit;
+   }
+   echo &quot;CARICO IL FILE SUL SERVER&lt;BR&gt;&quot;;
+   //Ciclo che carica il file ./programmi/PIPPO.TXT sul server 1KB per volta
+   do{
+   //Verifico se il file &egrave; finito
+   if(feof($file)){
+   echo &quot;INVIO COMPLETATO...&lt;BR&gt;&lt;BR&gt;&quot;;
+   //Invio al server di un messaggio speciale che indica la fine dell'invio
+   socket_write($socket,&quot;//FINEFILE//&quot;);
+   //Necessario per uscire dal ciclo
+   break;
+   }
+   //Leggo 1024Byte dal file con controllo eventuale errore 
+   if(!($blocco=@fread($file,1024))){
+   echo socket_strerror(socket_last_error($socket));
+   exit;
+   }
+   //Scrivo sul socket quanto letto dal file con controllo errore 
+   if(!(@socket_write($socket,$blocco,1024))){
+   echo socket_strerror(socket_last_error($socket));
+   exit;
+   }
+   //Leggo dato restituito dal server per verifica corretto invio 
+   if(!($ricevuto=@socket_read($socket,1024))){
+   echo socket_strerror(socket_last_error($socket));
+   exit;
+   }
+   echo &quot;&lt;BR&gt;Messaggio dal server: &quot;.$ricevuto.&quot;&lt;BR&gt;&quot;;
+   }while(true);
+   echo &quot;Termine INVIO&lt;BR&gt;&quot;;
+   fclose($file);
+   socket_close($socket);
+   ?&gt;
+ </pre>
+<pre>&nbsp;
+</pre>
+</body>
+</html>

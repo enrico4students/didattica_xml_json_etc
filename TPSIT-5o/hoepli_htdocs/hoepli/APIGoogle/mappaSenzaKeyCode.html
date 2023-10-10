@@ -1,0 +1,23 @@
+<html>
+<head>
+<title>Esercitazione per gli studenti</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+
+<body bgcolor="#FFFFFF">
+<p><font color="#0000FF"><a href="mappaSenzaKey.html"><img src="../../images/execute.gif" width="44" height="32" border="0" align="right"></a><a href="../index.html"><img src="../../images/return.gif" width="41" height="30" align="right" border="0"></a></font></p>
+<h3><font color="#006600">Codice sorgente del file mappaSenzaKey.html</font></h3>
+<pre><font color="#0000FF">&lt;?php  <strong>
+&lt;HTML&gt;&lt;HEAD&gt;<br>&lt;LINK HREF=&quot;/maps/documentation/javascript/examples/default.css&quot; REL=&quot;stylesheet&quot;&gt;<br>&lt;SCRIPT TYPE=&quot;text/javascript&quot;<br>SRC=&quot;https://maps.googleapis.com/maps/api/js?key=0&amp;sensor=false&quot;&gt;<br>&lt;/SCRIPT&gt;<br>&lt;SCRIPT&gt;<br>// definizione coordinate di centratura della mappa<br>var coordinate = new google.maps.LatLng(45.812, 9.0855);<br>// dichiarazione opzioni della mappa<br>var opzioni = {<br>  // livello di zoom della mappa mostrata<br>  zoom: 10,<br>  center: coordinate,<br>  // tipo di mappa (strade=ROADMAP, oppure HYBRID, SATELLITE, TERRAIN)<br>  mapTypeId: google.maps.MapTypeId.ROADMAP<br> }</strong></font></pre>
+<pre>function inizializza(){ 
+   // creazione dell'oggetto mappa 
+   var mappa = new google.maps.Map(document.getElementById('mappa'),opzioni);
+   }
+ &lt;/SCRIPT&gt;
+ &lt;/HEAD&gt;
+ &lt;BODY ONLOAD=&quot;inizializza();&quot;&gt;
+ &lt;DIV ID=&quot;mappa&quot; STYLE=&quot;position:absolute;left:5px;top:9px;height:450px;width:350px&quot;&gt;&lt;/DIV&gt;
+ &lt;/BODY&gt;&lt;/HTML&gt;
+ </pre>
+</body>
+</html>

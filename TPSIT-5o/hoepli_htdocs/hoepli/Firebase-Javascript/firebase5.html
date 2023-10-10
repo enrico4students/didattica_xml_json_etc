@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<HTML>
+  <HEAD>
+    <META CHARSET="UTF-8"/>
+    <TITLE>Esempi con Firebase </TITLE>
+    <!-- 1) connessione al driver/funzioni Firebase -->
+    <script 
+      src="https://www.gstatic.com/firebasejs/7.9.3/firebase.js">
+    </script>  
+  </HEAD>
+  <BODY>
+  <H3>Modifica dati in Firebase (Update) <H3>
+  <H4 id="id01"></h4>
+  <script src="datiConnessione.js"></script>
+  
+  <script>
+    // 2) sostituzione di un nodo: tutto il ramo viene sostituito 
+    var path ='libri/hoepli/Niko/';
+    var postData =	{
+      "JS1":{
+        argomento: "linguaggi",
+        prezzo: 23
+    }};
+    var updates = {};
+    updates[path] = postData;
+    firebase.database().ref().update(updates);
+
+    // 3) visualizza il nodo modificato  
+    document.write("percorso Firebase:"+path);
+    var output = document.getElementById("id01");
+    var ref = firebase.database().ref().child(path); 
+    ref.on("value", function(snapshot){
+      output.innerHTML = JSON.stringify(snapshot.val(), null, 2);
+    });
+  </script>
+  </BODY>
+</HTML>

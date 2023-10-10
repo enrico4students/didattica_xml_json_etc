@@ -1,0 +1,34 @@
+<html>
+<head>
+<title>Primo esempio con JSON</title>
+<script language="javascript">
+var libri=[
+ {
+  "id":"01",
+  "linguaggio": "Java",
+  "edizione":"seconda",
+  "autore": "Riccardo Nikolassy" 
+ },
+ {
+  "id":"04",
+  "linguaggio": "PHP",
+  "edizione": "terza",
+  "autore": "Paolo Camagni"
+ }
+];
+document.write("<h1>Esempio 1b con JSON e JavaScript</h1>");
+for(x = 0; x < 2; x++){
+ document.write("<h3>id = "+libri[x].id+" "+libri[x].edizione+" edizione");
+ document.write("- Linguaggio1 = " + libri[x].linguaggio +"</h3>");
+ document.write("<h3>Autore = " + libri[x].autore +"</h3>");
+}
+document.write("<hr>");
+document.write(libri[1].linguaggio + " puoi studiarlo sul libro ");
+document.write("scritto da " + libri[1].autore);
+document.write("<hr />");
+</script>
+</head>
+<body>
+</body>
+</html>
+

@@ -1,0 +1,138 @@
+// servlet che utilizza le sessioni 
+import javax.servlet.*;
+import javax.servlet.http.*;
+import java.io.*;
+import java.util.Date;
+
+public class Sessioni2 extends HttpServlet {
+    
+   private static final String PAGE_TOP1 = ""
+    + "<html>"
+    + "<head>"
+    + "<title> Servler e Sessioni </title>"
+    + "</head>"
+    + "<body>"
+    + "<H1><P>Parametri passati da HTML </P></H1>"
+    +"<H2><P>Prima parte: doPost()</P></H2>"  
+  ;
+
+   private static final String PAGE_TOP2 = ""
+    + "<html>"
+    + "<head>"
+    + "<title> Servler e Sessioni </title>"
+    + "</head>"
+    + "<body>"
+    + "<H1><P>Parametri passati da HTML </P></H1>"
+    +"<H2><P>Seconda parte: doGet()</P></H2>"  
+  ;
+  private static final String PAGE_BOTTOM = ""
+    + "<br><br>Clicca per richiamare la pagina e controllare se la sessione è stata creata <br>" 
+    + "<input type=submit value=richiama_la_servlet>"
+    + "</form>"
+    + "</body>"
+    + "</html>"
+  ;
+
+  // icone per visualizzare codice o ritornare al menu'
+  private static final String ICONE = ""
+    + "<a href=\"../sessioni2Code.html\">"
+    + "<img src=\"../images/code.gif\" height=24 " 
+    + "width=24 align=right border=0 alt=\"view code\"></a>"
+    + "<a href=\"../index.html\">"
+    + "<img src=\"../images/return.gif\" height=24 " 
+    + "width=24 align=right border=0 alt=\"return\"></a>"
+  ;     
+
+  public void doPost(HttpServletRequest request,HttpServletResponse response )
+  throws ServletException, IOException 
+  {
+    PrintWriter out;
+    // legge i parametri dalla pagina HTML
+    String nome = request.getParameter( "nome" );
+    String linguaggio = request.getParameter( "linguaggio" );
+  
+    request.getSession(false); 
+   
+    // crea una sessione se questa non esiste 
+    HttpSession session = request.getSession();
+    // aggiungiamo i parametri alla sessione  
+    session.setAttribute("Sessioni2.linguaggio", linguaggio );
+    session.setAttribute("Sessioni2.nome", nome );
+    
+    // creazione pagina HTML 
+    response.setContentType( "text/html" );
+    out = response.getWriter();
+
+    out.println(PAGE_TOP1);
+    // icone per visualizzare codice o ritornare al menu'
+    out.println(ICONE);
+   
+    // pagina HTML con una form per postback 
+    out.println("<P>");
+    out.print("<form action=\" Sessioni2\" method=GET>");
+    out.println("<P>Ciao "+nome +"!</p>");
+    out.println("<P>");
+    out.println( linguaggio );
+    out.println(" è un buon linguaggio di programmazione!</P></P>" );
+  
+    out.println(PAGE_BOTTOM);
+   // out.println("Clicca per verificare se la sessione è stata creata </P>" );
+   // out.println("<br>");
+   // out.println("<input type=submit>");
+  //  out.println("</form>");
+  //  out.println( "</BODY></HTML>" );
+    out.close(); // 
+  }
+
+  public void doGet( HttpServletRequest request, HttpServletResponse response )
+  throws ServletException, IOException 
+  {
+    PrintWriter out;
+    // non crea una nuova sessione 
+    HttpSession miaSessione = request.getSession(); 
+    java.util.Enumeration nomeVariabili;
+    if ( miaSessione != null )
+      nomeVariabili = miaSessione.getAttributeNames();
+    else
+      nomeVariabili = null;
+  
+    response.setContentType( "text/html" );
+    out = response.getWriter();
+    out.println(PAGE_TOP2);
+      // icone per visualizzare codice o ritornare al menu'
+    out.println(ICONE);
+  
+    // dati della sessione 
+    out.println("Identificatore di sessione :" + miaSessione.getId());
+    out.println("<br>");
+    out.println("Sessione creata il :");
+    out.println(new Date(miaSessione.getCreationTime()) + "<br>");
+    out.println("Data ultimo accesso :");
+    out.println(new Date(miaSessione.getLastAccessedTime()));
+    
+    String nomeVar, valoreVar;
+    Integer valoreInt;
+    // variabili memorizzate nella sessione   
+    if ( nomeVariabili != null && nomeVariabili.hasMoreElements() ) {
+      out.println( "<H3>Variabili memorizzate nella sessione </H3>" );
+      // per ogni nome di variabile restituisce il valore 
+      while (nomeVariabili.hasMoreElements()) {
+        nomeVar = (String) nomeVariabili.nextElement();
+        valoreVar = (String) miaSessione.getAttribute( nomeVar );
+        //out.println( nomeVar+ "<BR>" );
+        out.println( nomeVar + " =  "+ valoreVar + "<BR>" );
+        // valoreInt = (Integer) miaSessione.getAttribute( nomeVar );  
+        // out.println( valoreInt+ "<BR>" );
+        // valoreVar = (String) miaSessione.getAttribute( nomeVar );
+        // out.println(nomeVar + " =  "+ valoreVar + "<BR>" );
+      }
+      nomeVar   = (String) nomeVariabili.nextElement();
+      valoreVar = (String) miaSessione.getAttribute( nomeVar );
+      out.println(nomeVar + " =  "+ valoreVar + "<BR>" );
+    }
+    out.println( "</BODY></HTML>" );
+    out.close(); 
+    miaSessione.invalidate();  // chiude la sessione 
+  }
+}
+ 

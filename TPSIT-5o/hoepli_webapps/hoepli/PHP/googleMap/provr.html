@@ -1,0 +1,30 @@
+﻿<HTML><HEAD>
+<LINK HREF="/maps/documentation/javascript/examples/default.css" REL="stylesheet">
+<SCRIPT TYPE="text/javascript"
+SRC="https://maps.googleapis.com/maps/api/js?key=0&sensor=false">
+</SCRIPT>
+<SCRIPT>
+// definizione coordinate di centratura della mappa
+var coordinate = new google.maps.LatLng(45.812, 9.0855);
+// dichiarazione opzioni della mappa
+var opzioni = {
+  / proprietà zoom indica di quanto zommare la mappa 
+  zoom: 10,          
+  / proprietà center a cui assegnare un oggetto di classe LatLng per centrare la mappa
+  center: coordinate,
+  / proprietà mapTypeId definisce il tipo di terreno: 
+  / possibili alternative:  ROADMAP | HYBRID | SATELLITE | TERRAIN   
+  mapTypeId: google.maps.MapTypeId.ROADMAP
+ }
+
+function inizializza(){ 
+  // creazione dell'oggetto mappa 
+  var mappa = new google.maps.Map(document.getElementById('mappa'),opzioni);
+}
+</SCRIPT>
+</HEAD>
+<BODY ONLOAD="inizializza();">
+<DIV ID="mappa" STYLE="position:absolute;left:5px;top:9px;height:450px;width:350px"></DIV>
+</BODY></HTML>,
+ / possibili alternative:  ROADMAP | HYBRID | SATELLITE | TERRAIN   
+ 

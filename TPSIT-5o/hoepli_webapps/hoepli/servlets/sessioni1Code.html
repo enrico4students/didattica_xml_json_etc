@@ -1,0 +1,65 @@
+<html>
+<head>
+<title>Sessioni1.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+
+<body bgcolor="#FFFFFF">
+<p><font color="#0000FF"><a href="servlet/Sessioni1"><img src="images/execute.gif" align="right" border="0"></a><a href="index.html"><img src="images/return.gif" width="24" height="24" align="right" border="0"></a></font></p>
+<h2><font color="#006600">Codice sorgente della classe Sessioni1.java</font></h2>
+<h3> // servlet che utilizza le sessioni - contatore di accessi </h3>
+<pre><font color="#0000FF">import</font> java.io.*;
+<font color="#0000FF">import</font> javax.servlet.*;
+<font color="#0000FF">import</font> javax.servlet.http.*;
+<font color="#0000FF">import</font> java.util.Date;
+
+<font color="#0000FF">public class</font> <font color="#FF0000">Sessioni1</font> <font color="#0000FF">extends</font> HttpServlet 
+{ 
+<font color="#0000FF"> private static final String</font> <font color="#990000">PAGE_TOP</font> = &quot;&quot;<br>    + &quot;<font color="#006600">&lt;html&gt;</font>&quot;<br>    + &quot;<font color="#009900">&lt;head&gt;</font>&quot;<br>    + &quot;<font color="#009900">&lt;title&gt;</font><font color="#993333">Servler e Sessioni</font><font color="#009900">&lt;/title&gt;</font>&quot;<br>    + &quot;<font color="#009900">&lt;/head&gt;</font>&quot;<br>    + &quot;<font color="#009900">&lt;body&gt;</font>&quot;<br>    + &quot;<font color="#009900">&lt;h1&gt; </font> Contatore degli accessi <font color="#009900">&lt;/h1&gt;</font>&quot;<br>   ;
+
+ <font color="#0000FF"> private static final String</font> <font color="#990000">PAGE_BOTTOM</font> = &quot;&quot;
+    + &quot;<font color="#009900">&lt;br&gt;&lt;br&gt;Clicca per richiamare la servlet &lt;br&gt;</font>&quot; <br>    + &quot;<font color="#009900">&lt;input type=submit value=richiama_la_servlet&gt;</font>&quot;<br>    + &quot;&lt;/form&gt;&quot;<br>    + &quot;&lt;/<font color="#009900">body</font>&gt;&quot;<br>    + &quot;&lt;/<font color="#009900">html</font>&gt;&quot;<br>  ;
+
+ <font color="#0000FF">public void</font> <strong>doGet</strong>(HttpServletRequest request,HttpServletResponse response)
+  <font color="#0000FF">throws</font> ServletException, IOException 
+  {
+   PrintWriter output;
+   
+   // crea una sessione se questa non esiste 
+   HttpSession <font color="#FF00FF">sessione</font> = request.getSession();
+   
+   // recupera e setta il valore del contatore 
+   <font color="#0000FF">Integer</font> tanti = (Integer) <font color="#FF00FF">sessione</font>.getAttribute(&quot;Sessioni1.mioContatore&quot;);</pre>
+<pre>   // creazione pagina HTML 
+   response.setContentType(<font color="#009900">&quot;text/html&quot;</font>);
+   output = response.getWriter();
+   output.println( <font color="#990000">PAGE_TOP</font> );
+   // icone per visualizzare codice o ritornare al menu'
+   &lt; omissis &gt;
+
+   // pagina HTML con una form per postback 
+   output.println(<font color="#009900">&quot;&lt;P&gt;&quot;</font>);
+   output.print(<font color="#009900">&quot;&lt;form action=\&quot; Sessioni1\&quot; method=GET&gt;&quot;</font>);
+   // alla fine il nuovo valore viene salvato
+   <font color="#0000FF">if</font> (tanti == null) // se non esiste
+   {
+     tanti = <font color="#0000FF">new Integer</font>(1); // ne crea uno nuovo
+     output.println(&quot;E' la prima volta che viene eseguita la servlet&lt;/P&gt;&quot;    );
+   }
+   <font color="#0000FF">else</font> // altrimenti
+   {
+     tanti = <font color="#0000FF">new</font> <font color="#0000FF">Integer</font>(tanti.intValue()+1); // lo incrementa
+     output.print(&quot;La servlet e' stata eseguita nr. volte : &quot; );
+     output.println(tanti);
+   }
+   <font color="#FF00FF">sessione</font>.setAttribute(&quot;Sessioni1.mioContatore&quot;, tanti);
+   
+   output.println( <font color="#990000">PAGE_BOTTOM</font> );
+   output.close();  
+  }
+ }
+   
+ </pre>
+
+</body>
+</html>

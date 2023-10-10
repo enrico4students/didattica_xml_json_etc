@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE siti SYSTEM "siti.dtd">
+<siti>
+<sito IDSito="sit001">
+<nome> Google </nome>
+<URL>http://www.google.it</URL>
+<note> Il motore di ricerca piu' utilizzato al mondo</note> 
+<categoria>motori di ricerca</categoria>
+</sito>
+
+<sito IDSito="sit002">
+<nome>Bridge Base Online</nome>
+<URL>http://www.bridgebase.com</URL>
+<note>Il piu' famoso portale per gli amanti del bridge</note> 
+<categoria>games</categoria>
+</sito>
+
+</siti>
+
+
+
+ 

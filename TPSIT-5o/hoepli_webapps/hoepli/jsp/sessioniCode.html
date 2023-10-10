@@ -1,0 +1,33 @@
+<html>
+<head>
+<title>Esercitazionde per gli studenti</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+<body bgcolor="#FFFFFF">
+<p><font color="#0000FF"><a href="sessioni.jsp"><img src="images/execute.gif" align="right" border="0"></a><a href="index.html"><img src="images/return.gif" width="24" height="24" align="right" border="0"></a></font></p>
+<h3><font color="#006600">Codice sorgente sessioni.html</font></h3>
+<pre><font color="#0000FF">&lt;HTML&gt;</font> <font color="#0000FF">
+&lt;BODY&gt;</font>
+<font color="#0000FF">&lt;FORM METHOD=POST ACTION=</font>&quot;<strong><font color="#990000">sessioni1.jsp</font></strong>&quot;&gt;<br><font color="#0000FF">&lt;h3&gt;</font>Quale &egrave; il tuo nome? <font color="#0000FF">&lt;INPUT TYPE=TEXT NAME = </font>nomeUtente <font color="#0000FF">SIZE=20&gt;&lt;/h3&gt;</font><br><font color="#0000FF">&lt;P&gt;&lt;INPUT TYPE=SUBMIT&gt;</font><br><font color="#0000FF">&lt;/FORM&gt; </font>
+<font color="#0000FF">&lt;/BODY&gt;
+&lt;/HTML&gt; 
+</font></pre>
+
+<h3><font color="#0000FF">  </font><font color="#006600">Codice sorgente sessioni1.jsp</font><font color="#006600"><font color="#000000">
+</font></font></h3>
+<pre><font color="#006600"><font color="#000000">&lt;%</font><br> <font color="#000000">String nome = request.getParameter( &quot;nomeUtente&quot; );<br> session.setAttribute( &quot;ilNome&quot;, nome );</font><br>%&gt;<br></font><font color="#0000FF">&lt;HTML&gt;</font> <font color="#0000FF">
+&lt;BODY&gt;</font><font color="#006600"><br><font color="#0000FF">&lt;A HREF=</font><font color="#000000">&quot;<strong><font color="#990000">sessioni2.jsp</font></strong>&quot;&gt;Continua ...</font> <font color="#0000FF">&lt;/A&gt;</font><br></font><font color="#0000FF">&lt;/BODY&gt;
+&lt;/HTML&gt; </font><font color="#006600">
+</font></pre>
+<h3><font color="#006600">  Codice sorgente sessioni2.jsp
+</font></h3>
+<pre><font color="#0000FF">&lt;HTML&gt;</font> <font color="#0000FF">
+&lt;BODY&gt;</font><font color="#006600"><br><font color="#0000FF">&lt;h3&gt;</font><font color="#000000">Ciao, &lt;%= session.getAttribute( &quot;ilNome&quot; ) %&gt;</font><font color="#0000FF">&lt;/h3&gt;</font><br></font><font color="#0000FF">&lt;/BODY&gt;
+&lt;/HTML&gt; </font></pre>
+<pre><font color="#0000FF">
+</font></pre>
+<pre> </pre>
+<pre></pre>
+<font color="#0000FF"> </font> 
+</body>
+</html>

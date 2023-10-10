@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE posta SYSTEM "posta.dtd">
+<posta>
+ <messaggio>
+   <mittente>Romeo</mittente>
+   <destinatario>Giulietta</destinatario>
+   <intestazione>Appuntamento</intestazione>
+   <testo>Ricordati che stasera verro' sotto il tuo balcone!</testo >
+ </messaggio>
+ <messaggio>
+   <mittente>Adamo</mittente>
+   <destinatario>Eva</destinatario>
+   <intestazione>Merenda</intestazione>
+   <testo>Porta tu la frutta, basta che non siano mele!</testo>
+ </messaggio>
+</posta >

@@ -1,0 +1,54 @@
+<!doctype html>
+<!--https://softauthor.com/learn-to-build-firebase-crud-app-with-javascript-part01-reading-data -->
+<html>
+    <head>
+     <script 
+      src="https://www.gstatic.com/firebasejs/7.9.3/firebase.js">
+     </script>  
+
+        <meta charset="utf-8" />
+        <title>Esempio CRUD </title>
+        <link rel="stylesheet" href="style2.css" />
+        <style type="text/css">
+<!--
+.style1 {color: #FFFF00}
+.style2 {
+	color: #336666;
+	font-style: italic;
+}
+-->
+        </style>
+    </head>
+    <body>
+        <h1>
+            <span class="style1">Firebase CRUD: gestione libri
+            </span><br/>
+            <span class="style2"><small>            01 Leggi i dati </small></span>
+            <span class="style2"><small>            02 Modifica i dati </small></span>
+            <span class="style2"><small>            03 Inserisci nuovo libro </small></span>
+            <span class="style2"><small>            04 Cancella un libro </small></span>
+            </small></span> </h1>
+        <ul id="userList"></ul>
+        <div id="userDetail">
+            <p>
+                autore :
+                <strong class="detailName"></strong>
+            </p>
+            <p>
+                email:
+                <strong class="detailEmail"></strong>
+            </p>
+            <p>
+                prezzo:
+                <strong class="detailAge"></strong>
+            </p>
+            <p>
+                titolo:
+                <strong class="detailAge"></strong>
+            </p>
+        </div>
+        <!-- firebase sdk link goes here -->
+        <script type="text/javascript" src="connessioneCRUD1.js"></script>
+    </body>
+</html>
+ 
