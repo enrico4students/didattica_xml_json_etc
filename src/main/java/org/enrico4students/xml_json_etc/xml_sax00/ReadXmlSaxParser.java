@@ -22,6 +22,7 @@ public class ReadXmlSaxParser {
     public static void main(String[] args) {
 
         System.out.println("Working Directory = " + System.getProperty("user.dir"));
+        System.out.println("apro il file " + FILENAME);
 
         SAXParserFactory factory = SAXParserFactory.newInstance();
 
