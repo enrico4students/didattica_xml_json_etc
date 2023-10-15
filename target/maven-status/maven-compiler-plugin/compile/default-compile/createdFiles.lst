@@ -1,5 +1,3 @@
-com\enrico4students\xml\basic\dtd\dom\ex00\DOMValid.class
-com\enrico4students\xml\basic\dtd\sax\ex00\SAXValid.class
-com\enrico4students\xml\basic\dtd\dom\ex00\ValidHandler.class
-com\enrico4students\xml\basic\Basic.class
-com\enrico4students\xml\basic\dtd\sax\ex00\ValidHandler.class
+org\enrico4students\xml_json_etc\xml_sax00\PrintAllHandlerSax.class
+org\enrico4students\xml_json_etc\xml_sax00\ReadXmlSaxParser.class
+org\enrico4students\xml_json_etc\Xml_json_etc.class
