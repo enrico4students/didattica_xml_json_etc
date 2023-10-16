@@ -1,0 +1,7 @@
+<!ELEMENT siti (sito)*>
+<!ELEMENT sito (nome, URL, note, categoria)>
+<!ELEMENT nome (#PCDATA)>
+<!ELEMENT URL (#PCDATA)>
+<!ELEMENT note (#PCDATA)>
+<!ELEMENT categoria (#PCDATA)>
+<!ATTLIST sito IDSito ID #REQUIRED>

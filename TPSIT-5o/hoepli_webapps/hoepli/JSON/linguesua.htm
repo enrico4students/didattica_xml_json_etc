@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="googlebot" content="noindex, nofollow">
+  <script type="text/javascript" src="//code.jquery.com/jquery-compat-git.js"></script>
+  <link rel="stylesheet" type="text/css" href="/css/result-light.css">
+  <style type="text/css">
+  </style>
+  <title></title>
+
+<script type='text/javascript'>//<![CDATA[
+$(window).on('load', function() {
+$( "select" )
+    .change(function () {
+    var lang = $( "select option:selected" ).val();
+    $( "#language" ).text( lang );
+    $.getJSON( "lang.json", function( json ) {
+        $( "#results" ).text( json.w1.lang );
+    });
+});
+});//]]> 
+
+</script>
+  
+</head>
+
+<body>
+<select name="language">
+<option selected="selected" value="english">English</option>
+<option value="german">German</option>
+<option value="spanish">Spanish</option>
+<option value="italian">Italian</option>
+<option value="french">French</option>
+<option value="portuguese">Portuguese</option>
+<option value="dutch">Dutch</option>
+<option value="romanian">Romanian</option>
+<option value="greek">Grek</option>
+<option value="bulgarian">Bulgarian</option>
+</select>
+<div id="language"></div>
+
+<div id="results"></div>
+  
+</body>
+
+</html>
+

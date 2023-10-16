@@ -1,0 +1,34 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<TITLE>Esempio di Servlet con query di update</TITLE>
+</HEAD>
+<BODY>
+<FORM ACTION="servlet/ServletDerby5" METHOD="GET">
+  <p><strong><font color="#0000FF" size="4" face="Arial, Helvetica, sans-serif">Servlet 
+    con sessioni e query parametrica di update </font><font color="#FF0000"><font color="#0000FF">(database 
+    Java DB)</font></font></strong></p>
+  <p>Indica la matricola e seleziona il campo che desideri modificare :</p>
+  <p>matricola :
+    <input type="text" name="dato1" size="4"> 
+  </p>
+  <p>nuovo
+    <select name="scelta1">
+      <option value="cognome">cognome</option>
+      <option value="nome">nome</option>
+      <option value="classe">classe</option>
+      <option value="sezione">sezione</option>
+      <option value="sesso">sesso</option>
+    </select> 
+   : 
+   <input type="text" name="dato2">
+  </p>
+  <P> 
+  <input name="submit" type="submit" value="Submit">
+  <input name="reset" type="reset">
+  </P>
+  <p><strong>Nota</strong>: viene restituita una pagina <font color="#FF0000">HTML</font> 
+  generata dalla servlet <font color="#FF0000">ServletDerby5.java</font></p>
+</FORM>
+</BODY>
+</HTML>

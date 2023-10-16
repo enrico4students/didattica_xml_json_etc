@@ -1,0 +1,46 @@
+<html>
+<head>
+<title>Esercitazione per gli studenti</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+
+<body bgcolor="#FFFFFF">
+<p><font color="#0000FF"><a href="JSON4.htm"><img src="../images/execute.gif" width="44" height="32" border="0" align="right"></a><a href="index.html"><img src="../images/return.gif" width="41" height="30" align="right" border="0"></a></font></p>
+<h2><font color="#006600">Codice sorgente del file lingue.htm </font></h2>
+<pre>&nbsp;</pre>
+<pre>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;<br>&quot;http://www.w3.org/TR/html4/loose.dtd&quot;&gt;<br>&lt;html&gt;<br>&lt;head&gt;<br>&lt;title&gt;Untitled Document&lt;/title&gt;<br>&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=iso-8859-1&quot;&gt;<br>&lt;script type=&quot;text/javascript&quot; src = &quot;http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js&quot;&gt;&lt;/script&gt;	</pre>
+<pre>&lt;script type='text/javascript'&gt;//&lt;![CDATA[
+   $(window).on('load', function() {
+   $( &quot;select&quot; )
+   .change(function () {
+   var lang = $( &quot;select option:selected&quot; ).val();
+   $( &quot;#language&quot; ).text( lang );
+   $.getJSON( &quot;lang.json&quot;, function( json ) {
+   $( &quot;#results&quot; ).text( json.w1.lang );
+   });
+   });
+   });//]]&gt; </pre>
+<pre>// https://jsfiddle.net/vpeLq3k4/
+ &lt;/script&gt;</pre>
+<pre>&lt;/head&gt;</pre>
+<pre>&lt;body&gt;
+ &lt;select name=&quot;language&quot;&gt;
+ &lt;option selected=&quot;selected&quot; value=&quot;english&quot;&gt;English&lt;/option&gt;
+ &lt;option value=&quot;german&quot;&gt;German&lt;/option&gt;
+ &lt;option value=&quot;spanish&quot;&gt;Spanish&lt;/option&gt;
+ &lt;option value=&quot;italian&quot;&gt;Italian&lt;/option&gt;
+ &lt;option value=&quot;french&quot;&gt;French&lt;/option&gt;
+ &lt;option value=&quot;portuguese&quot;&gt;Portuguese&lt;/option&gt;
+ &lt;option value=&quot;dutch&quot;&gt;Dutch&lt;/option&gt;
+ &lt;option value=&quot;romanian&quot;&gt;Romanian&lt;/option&gt;
+ &lt;option value=&quot;greek&quot;&gt;Grek&lt;/option&gt;
+ &lt;option value=&quot;bulgarian&quot;&gt;Bulgarian&lt;/option&gt;
+ &lt;/select&gt;
+ &lt;div id=&quot;language&quot;&gt;&lt;/div&gt;</pre>
+<pre>&lt;div id=&quot;results&quot;&gt;&lt;/div&gt;
+ &lt;/body&gt;
+ &lt;/html&gt;
+ </pre>
+<pre>&nbsp;     </pre>
+</body>
+</html>

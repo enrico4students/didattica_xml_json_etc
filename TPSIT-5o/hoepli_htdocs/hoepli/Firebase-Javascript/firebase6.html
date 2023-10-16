@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<HTML>
+  <HEAD>
+    <META CHARSET="UTF-8"/>
+    <TITLE>Esempi con Firebase </TITLE>
+    <!-- 1) connessione al driver/funzioni Firebase -->
+    <script 
+     src="https://www.gstatic.com/firebasejs/7.9.3/firebase.js">
+    </script>  
+  </HEAD>
+  <BODY>
+    <P>Esempio 6: aggiornamento di un attributo </P>
+    <H4 id="id01"></H4>
+
+    <script src = "datiConnessione.js"></script>
+    <script>
+    // 2) aggiorna il singolo attributo di uno specifico nodo
+    var updates = {};
+    var path ='libri/hoepli/Niko/JS1/';
+    var attributo = 'prezzo';
+    updates[path+attributo] = 17;
+    firebase.database().ref().update(updates);
+
+    // 3) visualizza il nodo modificato  
+    document.write("percorso Firebase:"+path);
+    var output = document.getElementById("id01");
+    var ref = firebase.database().ref().child(path); 
+    ref.on("value", function(snapshot){
+      output.innerHTML = JSON.stringify(snapshot.val(), null, 2);
+    });
+ 
+    </script>
+  </BODY>
+</HTML>

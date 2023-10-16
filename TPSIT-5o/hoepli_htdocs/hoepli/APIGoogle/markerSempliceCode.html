@@ -1,0 +1,34 @@
+<html>
+<head>
+<title>Esercitazione per gli studenti</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+
+<body bgcolor="#FFFFFF">
+<p><font color="#0000FF"><a href="markerSemplice.html"><img src="../../images/execute.gif" width="44" height="32" border="0" align="right"></a><a href="../index.html"><img src="../../images/return.gif" width="41" height="30" align="right" border="0"></a></font></p>
+<h3><font color="#006600">Codice sorgente del file markerSempliceCode.html</font></h3>
+<pre><font color="#0000FF">&lt;!DOCTYPE html&gt;&lt;html&gt; <br> &lt;head&gt;    &lt;meta charset=&quot;utf-8&quot;&gt;  <br>  &lt;title&gt;Marker Semplice &lt;/title&gt;    <br>&lt;style&gt;      <br>html, body, #map-canvas {        <br>	height: 100%;        <br>	margin: 0px;        <br>	padding: 0px; <br>    height:350px;<br>    width:800px}    <br>&lt;/style&gt;    <br>&lt;SCRIPT TYPE=&quot;text/javascript&quot;<br>SRC=&quot;https://maps.googleapis.com/maps/api/js?key=AIzaSyChTsh9mTgKrBBzRAdmRVFLBTDWG__5aWk&amp;sensor=false&amp;v=3.exp&amp;signed_in=true&quot;&gt;<br>&lt;/SCRIPT&gt;    <br>&lt;script&gt;<br>var napoli   = new google.maps.LatLng(40.8333,14.25);<br>var castello = new google.maps.LatLng(40.8277,14.2478);<br>var immagine= {               // nuova immagine per il marker (se vogliamo cambiarla)<br>   url: 'img/omino.png',                            // file dell'immagine <br>   size:   new google.maps.Size(32, 32),        // dimensione del marker in pixel<br>   origin: new google.maps.Point(0, 0),         // origine <br>   anchor: new google.maps.Point(16, 16)        // punto marker collocato in LatLng<br> };<br> var mapOptions = {    <br>  zoom: 13,    <br>  center: napoli  <br>};  </font></pre>
+<pre>var map;
+   var marker;</pre>
+<pre>function inizializza(){ 
+     
+   map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions); 
+   
+   marker = new google.maps.Marker({
+   map: map, // la mappa appena creata 
+   title:&quot;il castello&quot;, // stringa con descrizione del marker 
+   Snippet:&quot; da visitare!&quot;, // testo posizionato sottoil titolo 
+   position: castello, // posizioniamo il markher a queste coordinate 
+   icon: immagine
+   }); </pre>
+<pre> addMarker(marker, map); // aggiunge il marker sulla mappa </pre>
+<pre>}</pre>
+<pre>google.maps.event.addDomListener(window, 'load', inizializza); 
+ &lt;/script&gt; 
+ &lt;/head&gt; 
+ &lt;body&gt; 
+ &lt;div id=&quot;map-canvas&quot;&gt;&lt;/div&gt; &lt;/body&gt;&lt;/html&gt;</pre>
+<pre>&nbsp;
+</pre>
+</body>
+</html>

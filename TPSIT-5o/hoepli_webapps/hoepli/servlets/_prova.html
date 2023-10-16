@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+
+<script type "text/javascript">
+
+  function trova(){
+
+   // var editoreScelto = document.getElementById("editore").value;
+    //var URL = "servlet/ServletJSON1?editore="+editoreScelto;
+ 
+    var URL = "servlet/servlet/Sondaggio1?piatto=pizza";
+    document.write(3);
+    document.write(URL);
+  }
+ 
+  function visualizza(){
+
+  }
+
+</script>
+
+<TITLE>Esempio di Servlet con risposta in JSON  </TITLE>
+</HEAD>
+<BODY>
+  <div id = "scelta">
+  <FORM>
+    <p><strong><font color="#0000FF" size="4" face="Arial, Helvetica, sans-serif">Esempio 
+    di utilizzo delle servlet con radio button e POST e file </font></strong></p>
+    <p>Quale e' il tuo editore preferito?<BR>
+    <BR>
+    <INPUT TYPE="radio" NAME="editore" VALUE="Atlante">
+    Atlante<BR>
+    <INPUT TYPE="radio" NAME="editore" VALUE="Rusconi">
+    Rusconi<BR>
+    <INPUT TYPE="radio" NAME="editore" VALUE="Hoepli"CHECKED>
+    Hoepli<BR>
+    <BR>
+    <INPUT TYPE="button"  onclick="trova()" VALUE="Trova" />
+    </p>
+
+   </FORM>
+  </div>
+
+
+</BODY>
+</HTML>

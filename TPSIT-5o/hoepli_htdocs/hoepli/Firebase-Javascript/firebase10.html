@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<HTML>
+  <HEAD>
+    <META CHARSET="UTF-8"/>
+    <TITLE>Esempi con Firebase </TITLE>
+    <!-- 1) connessione al driver/funzioni Firebase -->
+    <script 
+     src="https://www.gstatic.com/firebasejs/7.9.3/firebase.js">
+    </script>  
+  </HEAD>
+  <BODY>
+    <P>Esempio 10: prova utilizzo funzioni ref()  </P>
+    <H4 id="id01"></H4>
+    <script src="datiConnessione.js"></script>
+ 
+    <script>
+      var output = document.getElementById("id01");
+      // definizione dato del nodo  
+      var path = 'libri/hoepli/Niko/';            // percorso del nodo
+      var nodo = 'Java';                          // nome del nodo  
+      document.write("percorso Firebase:"+path);
+     
+      path = "users/1";
+      var rootRef = firebase.database().ref();
+      rootRef.once("value").then(function(ciro) {
+           var key = ciro.key;                              // null
+           var childKey = ciro.child("users/1/name").key;   // "ada"
+        });
+ 
+     // Test for the existence of certain keys within a DataSnapshot
+     var ref = firebase.database().ref("users/1");
+     ref.once("value")
+       .then(function(snapshot) {
+         var name = snapshot.child("name").val();                     // {first:"Ada",last:"Lovelace"}
+         var firstName = snapshot.child("name/first").val();          // "Ada"
+         var lastName = snapshot.child("name").child("last").val();   // "Lovelace"
+         var age = snapshot.child("age").val(); // null
+         output.innerText = firstName +" "+lastName;
+       });
+
+       //visualizza albero JSON
+     //  ref.once("value", function(ciro){output.innerHTML = JSON.stringify(ciro.val(), null, 2);});
+    </script>
+  </BODY>
+</HTML>

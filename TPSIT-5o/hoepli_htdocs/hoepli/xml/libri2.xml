@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml-stylesheet type="text/css" href="libri.css"?>
+<Biblioteca>
+<Libro>
+<Titolo>Harry Potter</Titolo>
+<Autore>K.Rowling</Autore>
+<Editore>Salani</Editore>
+<AnnoPub>1993</AnnoPub>
+<Categoria>Avventura</Categoria>
+</Libro>
+<Libro>
+<Titolo>Bucoliche</Titolo>
+<Autore>Virgilio Marone Publio</Autore>
+<Editore>Mondadori</Editore>
+<AnnoPub>1996</AnnoPub>
+<Categoria>Classici greci e latini</Categoria>
+</Libro>
+</Biblioteca>
+

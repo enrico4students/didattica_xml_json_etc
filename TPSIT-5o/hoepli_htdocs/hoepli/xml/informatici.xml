@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE persona SYSTEM "informatici.dtd"> 
+<persona nato = "23/06/1912" deceduto = "07/06/1954">
+<nominativo>
+<nome>Alan</nome>
+<cognome>Turing</cognome>
+</nominativo>
+<professione> informatico </professione>
+<professione> matematico </professione>
+<professione> crittografo </professione>
+</persona>

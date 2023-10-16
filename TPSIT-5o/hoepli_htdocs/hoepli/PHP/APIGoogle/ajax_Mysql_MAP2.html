@@ -1,0 +1,123 @@
+<HTML><HEAD>
+<LINK HREF="/maps/documentation/javascript/examples/default.css" REL="stylesheet">
+<script TYPE="text/javascript"
+SRC="https://maps.googleapis.com/maps/api/js?key=AIzaSyChTsh9mTgKrBBzRAdmRVFLBTDWG__5aWk&sensor=false">
+</script>
+
+<script>
+var map; //dichiarazione oggetto map di tipo globale
+function inizializza() {         // funzione richiamata all'apertura del body
+   var opzioni = {               // dichiarazione opzioni della mappa
+      zoom: 11,                  // livello di zoom della mappa mostrata
+      // inizialmente la mappa e' centrata sulla citta'di Como
+      center: new google.maps.LatLng(45.8109,9.0885), 
+      // tipo di mappa (strade=ROADMAP, oppure HYBRID, SATELLITE, TERRAIN)
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+   }
+   map = new google.maps.Map(document.getElementById('mappa'),opzioni); // oggetto mappa 
+}
+</script>
+
+<script type="text/javascript">
+function posiziona(sel){     // centra la mappa e colloca il marker
+  var f = document.frm;
+  // dati selezionati dal combo
+  f.sel_value.value = sel.options[sel.selectedIndex].value;
+  f.sel_text.value = sel.options[sel.selectedIndex].text;
+  // elaborazione dati selezionati 
+  stringa = f.sel_value.value;
+  st3 = stringa.split(",");   // separa la stringa in tre campi di un array 
+  // visualizza i dati nelle caselle di testo
+  f.citta.value = st3[0];     // nome comune
+  f.lat .value  = st3[1];     // latitudine
+  f.lng .value  = st3[2];     // longitudine
+  // centra la mappa e posiziona il cursore 
+  map.setCenter(new google.maps.LatLng(f.lat.value,f.lng.value));
+  var posCur = new google.maps.LatLng(f.lat.value,f.lng.value); // poniamo il cursore animato 
+  marker = new google.maps.Marker({
+  	map:map,
+    draggable:true,
+    animation:google.maps.Animation.DROP,    
+    position: posCur  
+  });  
+}
+</script>
+
+<script>
+// funzione attivata ad ogni pressione di un tasto sulla casella di testo
+function mostra(str){
+  if (str.length == 0){  // se stringa letta vuota viene inviata risposta blank
+	  document.getElementById("risposta").innerHTML = "";
+	  return;
+  }
+  ajax = new XMLHttpRequest();             // creazione oggetto XMLHttepRequest 
+  // onreadystatechange contiene la funzione che elabora i dati ricevuti dal server 
+  ajax.onreadystatechange = function(){
+    // readyState = 4 richiesta completa + status=200 OK 
+    if (ajax.readyState == 4 && ajax.status == 200){
+	    // i dati ricevuti sono ricavati da responseText di tipo di stringa
+      document.getElementById("risposta").innerHTML = ajax.responseText;
+	    // le righe sono composte da  [ nome, lat, long <cr>] 
+      // i campi vanno individuati, separati e messi in un combo box  
+      x=document.getElementById("elencoCombo");
+	    // pulisci combo daui vecchi dati
+	    for(k = x.options.length-1; k>=0 ;k--){
+		    x.remove(k);
+	    }
+	    stringa = ajax.responseText;
+	    // estrae singole righe per riempire il combo
+	    s = stringa.split("<BR>");
+	    for(k = s.length-2; k >= 3; k--){
+  	    var o = document.createElement('option');
+		    o.text  = s[k];  
+		    o.value = s[k];  
+		    x.add(o,0);
+	    }
+      // se e' presente un solo elemento nel combo box lo collochiamo direttamente 
+	    if (s.length == 5){           
+	      st = s[3].split(",");
+        var f = document.frm;
+     		f.citta.value = st[0];
+    		f.lng .value  = st[2];
+    		f.lat .value  = st[1];
+    		map.setCenter(new google.maps.LatLng(f.lat.value,f.lng.value));
+    		// posizioniamo il marker nella posizione del cursore 
+        var posCur = new google.maps.LatLng(f.lat.value,f.lng.value);
+        marker = new google.maps.Marker({
+  	      map:map,
+          draggable:true,
+          animation:google.maps.Animation.DROP,    
+          position: posCur  
+        });  
+ 	    }
+    } 
+  }
+  // apriamo la connessione con il server e inoltriamo con GET i parametri
+  ajax.open("GET", "elabora.php?stringa=" + str, true);
+  ajax.send();  // inoltro della richieta al server 
+}
+</script>
+
+</HEAD>
+<BODY onload="inizializza()">
+<P><B>Ricerca tipo &quot;Google suggest&quot; dei comuni italiani, trasferimento in combo box, selezione e posizionamento sulla mappa </B></P>
+<FORM> 
+Introduci le prime lettere: 
+  <INPUT TYPE="text" onkeyup="mostra(this.value)">
+</FORM>
+<FORM name="frm">
+  Seleziona un comune 
+  <SELECT name="elencoCombo" size="1" id="elencoCombo" onchange="posiziona(this)">
+    <OPTION>&lt;- elenco comuni individuati&gt;</OPTION>	
+  </SELECT>
+  <INPUT type="hidden" name="sel_value">
+  <INPUT type="hidden" name="sel_text">
+  <INPUT name="citta" size="20">
+  <INPUT name="lat" size="5">
+  <INPUT name="lng" size="5">
+  <BR>
+</FORM>
+<DIV ID="risposta"></DIV></P>
+<DIV ID="mappa" STYLE="position:absolute;left:253px;top:150px;height:500px;width:469px"></div>
+</BODY>
+</HTML>

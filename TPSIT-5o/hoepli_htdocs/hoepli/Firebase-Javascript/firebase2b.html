@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<HTML>
+  <HEAD>
+    <META CHARSET="UTF-8"/>
+    <TITLE>Esempi con Firebase </TITLE>
+    <!-- 1) connessione al driver/funzioni Firebase -->
+    <script 
+     src="https://www.gstatic.com/firebasejs/7.9.3/firebase.js">
+    </script>  
+  </HEAD>
+  <BODY>
+    <P>Esempio 2a : prova utilizzo funzioni ref()  </P>
+    <H4 id="id01"></H4>
+    <script src="datiConnessione.js"></script>
+ 
+    <script>
+      var output = document.getElementById("id01");
+      // definizione dato del nodo  
+      var path = 'libri/hoepli/Niko/';                   // percorso del nodo
+      var nodo = 'JS1';                                  // nome del nodo  
+      document.write("percorso Firebase:" + path);
+     
+      /* esempio 1 
+      var nodoRef = firebase.database().ref(path+nodo);
+      nodoRef.once("value").then(function(snap){
+        var key = snap.key;                              // JS1
+        var childKey = snap.child("titolo").key;         // titolo     
+        var childTitolo = snap.child("titolo").val();    // Javascript
+        output.innerText = childTitolo;
+      });
+      */
+
+      // esempio 2 
+      var nodoRef = firebase.database().ref(path);
+      nodoRef.once("value").then(function(snap) {
+         var volume = snap.child(nodo).val();                                 // oggetto 
+         var childTitolo =  snap.child(nodo+"/titolo").val();                 // "Javascript "
+         var childArgomento= snap.child(nodo).child("/argomento").val();      // "linguaggi"
+         var childPrezzo = snap.child("prezzo").val();                        // null
+         output.innerText = childTitolo +" "+ childArgomento +" "+ childPrezzo;
+      });
+
+     //  visualizza albero JSON
+     nodoRef.once("value", function(snap){output.innerHTML = JSON.stringify(snap.val(), null, 2);});
+
+  </script>     
+  </BODY>
+</HTML>

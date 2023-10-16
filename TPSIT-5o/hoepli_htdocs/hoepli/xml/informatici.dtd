@@ -1,0 +1,6 @@
+<!ELEMENT persona (nominativo, professione*)>
+<!ATTLIST persona nato CDATA #REQUIRED deceduto CDATA #IMPLIED>
+<!ELEMENT nominativo (nome, cognome)>
+<!ELEMENT nome (#PCDATA)>
+<!ELEMENT cognome (#PCDATA)>
+ 

@@ -1,0 +1,42 @@
+<!doctype html>
+<!--https://softauthor.com/firebase-crud-javascript-web-tutorial-part-2-create-update-delete -->
+
+<html>
+    <head>
+     <script 
+      src="https://www.gstatic.com/firebasejs/7.9.3/firebase.js">
+     </script>  
+
+        <meta charset="utf-8" />
+        <title>Sample CRUD Firebase Javascript - 03 Add Data</title>
+        <link rel="stylesheet" href="style2.css" />
+    </head>
+    <body>
+    <h1>Firebase CRUD with Javascript
+        <br/><small><em>User App</em></small>
+    </h1>
+
+    <!-- add user module -->
+    <section id="add-user-module" >
+        <button id="open-add-user-form-btn">+</button>
+        <form>
+            <h2>Add User</h2>
+            name:<br>
+            <input type='text' data-key='name' class='user-input'><br>
+            age:<br>
+            <input type='text' data-key='age' class='user-input'><br>
+            email:<br>
+            <input type='text' data-key='email' class='user-input'><br>
+            <button type='button' id="add-user-btn">add user</button>
+        </form>
+    </section>
+
+      <!-- show user module -->
+    <ul id="user-list"></ul>
+    <div id="user-detail"></div>
+    <script type="text/javascript" src="connessioneCRUD2.js"></script>
+
+  </body>
+
+</html>
+ 

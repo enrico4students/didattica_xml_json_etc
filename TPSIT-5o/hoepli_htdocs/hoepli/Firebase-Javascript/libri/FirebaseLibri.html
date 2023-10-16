@@ -1,0 +1,67 @@
+<!doctype html>
+<!--https://softauthor.com/firebase-crud-javascript-web-tutorial-part-2-create-update-delete -->
+
+<html>
+    <head>
+     <script 
+      src="https://www.gstatic.com/firebasejs/7.9.3/firebase.js">
+     </script>  
+        <meta charset="utf-8" />
+        <title>Esempio CRUD Firebase con Javascript  </title>
+        <link rel="stylesheet" href="style2.css" />
+        <style type="text/css">
+<!--
+.style1 {color: #FFFF00}
+.style2 {
+	color: #336699;
+	font-style: italic;
+}
+-->
+        </style>
+    </head>
+    <body>
+    <h1><span class="style1">Firebase CRUD: gestione libri
+        </span><br/>
+        <span class="style2"><small>Edita/Inserisci/Delete </small></span> </h1>
+
+    <!-- add user module -->
+    <section id="add-user-module" >
+        <button id="open-add-user-form-btn">+</button>
+        <form>
+            <h2>Nuovo libro</h2>
+            <h3>Edita dati</h3>
+            titolo:<br>
+            <input type='text' data-key='titolo' class='user-input'><br>
+            autore:<br>
+            <input type='text' data-key='autore' class='user-input'><br>
+            prezzo:<br>
+            <input type='text' data-key='prezzo' class='user-input'><br>
+            email:<br>
+            <input type='text' data-key='email' class='user-input'><br>
+            <button type='button' id="add-user-btn">aggiungi</button>
+        </form>
+    </section>
+
+ <!-- edit user module -->
+    <section id="edit-user-module">
+        <form>
+            <h2>Edita dati  libro</h2>
+             titolo:<br>
+            <input type='text' data-key='titolo' class='edit-user-input'><br>
+            autore:<br>
+            <input type='text' data-key='autore' class='edit-user-input'><br>
+            prezzo:<br>
+            <input type='text' data-key='prezzo' class='edit-user-input'><br>
+            email:<br>
+            <input type='text' data-key='email' class='edit-user-input'><br>
+            <button type='button' id="edit-user-btn">Conferma</button>
+
+        </form>
+    </section>
+
+    <!-- show user module -->
+    <ul id="user-list"></ul>
+    <div id="user-detail"></div>
+    <script type="text/javascript" src="libriCRUD.js"></script>
+  </body>
+</html>

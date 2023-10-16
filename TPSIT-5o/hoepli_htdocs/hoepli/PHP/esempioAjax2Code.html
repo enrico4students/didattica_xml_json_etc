@@ -1,0 +1,16 @@
+<html>
+<head>
+<title>Esercitazione per gli studenti</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+
+<body bgcolor="#FFFFFF">
+<p><font color="#0000FF"><a href="esempioAjax.html"><img src="../images/execute.gif" width="44" height="32" border="0" align="right"></a><a href="index.html"><img src="../images/return.gif" width="41" height="30" align="right" border="0"></a></font></p>
+<h3><font color="#006600">Codice sorgente del file 
+
+
+ esempioAjax2.html</font></h3>
+<pre><font color="#0000FF">&lt;HTML&gt;&lt;HEAD&gt;<br>&lt;SCRIPT&gt;<br>// funzione attivata ad ogni pressione di un tasto sulla casella di testo<br>function mostra(str){<br>  if (str.length == 0){  // se stringa letta vuota viene inviata risposta blank<br>    document.getElementById(&quot;risposta&quot;).innerHTML = &quot;&quot;;<br>    return;<br>  }<br>  // creazione oggetto XMLHttepRequest per vari tipi di Browser<br>  if (window.XMLHttpRequest){  // browser IE7+, Firefox, Chrome, Opera, Safari<br>    xmlhttp = new XMLHttpRequest();<br>  }<br>  else{                        // browser IE6, IE5<br>    xmlhttp = new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);<br>  }<br>  // dopo una richiesta serve una funzione x ricevere i dati restituiti dal server<br>  // onreadystatechange contiene la funzione che processer&agrave; la risposta del server <br>  xmlhttp.onreadystatechange = function(){<br>    // readyState contiene lo stato della response del server. Ogni volta che <br>    // readyState cambia, la funzione onreadystatechange viene eseguita<br>    // 0 La richiesta non &egrave; inizializzata<br>    // 1 E' stabilita la connessione col server<br>    // 2 La richiesta &egrave; ricevuta<br>    // 3 La richiesta &egrave; processata<br>    // 4 La richiesta &egrave; completa<br>    // se status=200 OK   -  404 Not found<br>    if (xmlhttp.readyState == 4 &amp;&amp; xmlhttp.status == 200){<br>      //i dati trasmessi dal server sono ricavati da responseText (tipo stringa)<br>      document.getElementById(&quot;risposta&quot;).innerHTML = xmlhttp.responseText;<br>    }<br>  }<br>  // il metodo open() ha 3 parametri:<br>  //  -il primo definisce quale metodo usare (GET/POST)<br>  //  -il secondo &egrave; l'url dove risiede lo script server-side<br>  //  -il terzo (booleano) specifica che la richiesta deve essere asincrona <br>  xmlhttp.open(&quot;GET&quot;, &quot;php_con_ajax.php?stringa=&quot; + str, true);<br>  // send() trasmette effettivamente la richiesta al server. <br>  // senza parametri si indica POST - per GET mettere i parametri tra parentesi<br>  xmlhttp.send();<br>}<br>&lt;/SCRIPT&gt;&lt;/HEAD&gt;<br>&lt;BODY&gt;<br>&lt;P&gt;&lt;B&gt;Scrivere nella casella le iniziali:&lt;/B&gt;&lt;/P&gt;<br>&lt;FORM&gt; <br>Nome: &lt;INPUT TYPE=&quot;text&quot; onkeyup=&quot;mostra(this.value)&quot;&gt;<br>&lt;/FORM&gt;<br>&lt;P&gt;Nominativi trovati: &lt;DIV ID=&quot;risposta&quot;&gt;&lt;/DIV&gt;&lt;/P&gt;<br>&lt;/BODY&gt;<br>&lt;/HTML&gt;<br></font>
+</pre>
+</body>
+</html>

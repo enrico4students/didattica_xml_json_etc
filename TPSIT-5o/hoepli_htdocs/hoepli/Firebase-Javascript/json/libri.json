@@ -1,0 +1,23 @@
+{
+  "libri": {"libro1":{
+    "titolo": "l vecchio e il mare",
+    "prezzo": 20,
+    "autore": "Ernest Hemingway",
+    "email": "hoepli@email.com"
+  }, "libro2":{
+   "titolo": "I promessi sposi",
+    "prezzo": 21,
+    "autore": " Alessandro Manzoni",
+    "email": "rosgi@email.com"
+  }, "libro3":{
+   "titolo": "Due milioni di baci",
+    "prezzo": 22,
+    "autore": "Alessandro Milan",
+    "email": "alemilan@email.com"
+  }, "libro4":{
+   "titolo": "La farfalla Granata",
+    "prezzo": 23,
+    "autore": "Nando Dalla Chiesa ",
+    "email": "neDelaChi@email.com"
+  }}
+}

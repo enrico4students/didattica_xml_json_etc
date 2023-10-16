@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<rubrica>
+<persona>
+<nome>Paolo</nome>
+<cognome>Camagni</cognome>
+<telefono_casa>0288888888</telefono_casa>
+<telefono_lavoro>02999999999</telefono_lavoro>
+<indirizzo_email>paolo@camagni.it</indirizzo_email>
+</persona>
+<persona>
+<nome>Riccardo</nome>
+<cognome>Nikolassy</cognome>
+<telefono_casa>0277777777</telefono_casa>
+<telefono_lavoro>0299999999</telefono_lavoro>
+<indirizzo_email>riccardo@nikolassy.it</indirizzo_email>
+</persona>
+</rubrica>

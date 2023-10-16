@@ -1,0 +1,57 @@
+<HTML><HEAD>
+<STYLE>
+div.street { 
+  position:absolute;
+  left:10px;
+  top:16px;
+  height:440px;
+  width:400px;
+  background-color:azure; 
+}
+div.mappa { 
+  position:absolute;
+  left:420px;
+  top:16px;
+  height:440px;
+  width:550px;
+  background-color:azure; 
+}
+</STYLE>
+<SCRIPT TYPE="text/javascript"
+SRC="https://maps.googleapis.com/maps/api/js?key=AIzaSyChTsh9mTgKrBBzRAdmRVFLBTDWG__5aWk&sensor=false">
+</SCRIPT>
+
+<SCRIPT TYPE="text/javascript">
+//funzione eseguita all'apertura della pagina HTML
+function init(){
+  var coordinate = new google.maps.LatLng(41.8914,12.4923);
+  //Definisco le opzioni della mappa
+  var opzioniMap =  {
+    zoom: 13,
+    center: coordinate, 
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  }
+  // istanzio l'oggetto di classe Map
+  var map = new google.maps.Map(document.getElementById('mappa'),opzioniMap);
+  // opzioni della StreetView
+  var opzioniSV = {
+    position: coordinate,
+    pov: {
+      heading: 34,
+      pitch: 10
+    }
+  }; 
+  // istanza oggetto di classe StreetViewPanorama
+  var panorama = new  google.maps.StreetViewPanorama(document.getElementById('strada'), opzioniSV);
+  // inserimento della street view nella mappa
+  map.setStreetView(panorama);
+}
+</SCRIPT>
+</HEAD>
+<TITLE>Mappa con StreetView</TITLE>
+<BODY ONLOAD="init();">
+<DIV class="street" id="strada"></DIV>
+<DIV id="mappa" class="mappa"></DIV>
+</BODY></HTML>
+
+

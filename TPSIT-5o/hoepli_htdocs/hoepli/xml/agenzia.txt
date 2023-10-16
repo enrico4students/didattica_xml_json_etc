@@ -1,0 +1,131 @@
+<!ELEMENT tappa (luogo,giorni) >
+<!ELEMENT luogo (#PCDATA) >
+<!ELEMENT giorni (#PCDATA) >
+<!ELEMENT durata (#PCDATA) >
+<!ELEMENT costo (#PCDATA) >
+<!ELEMENT descrizione (#PCDATA) >
+<!ELEMENT prenotazione (cliente,data) >
+<!ATTLIST prenotazione codice ID #REQUIRED >
+<!ELEMENT cliente (cognome,nome) >
+<!ELEMENT data (#PCDATA) >
+]>
+<agenzia>
+<viaggio codice="0001" tipo="sano">
+ <tappa>
+ <luogo>Moena</luogo>
+ <giorni>1</giorni>
+ </tappa>
+ <tappa>
+ <luogo>Merano</luogo>
+ <giorni>3</giorni>
+ </tappa>
+ <tappa>
+ <luogo>Bolzano</luogo>
+ <giorni>3</giorni>
+ </tappa>
+ <tappa>
+ <luogo>Moena</luogo>
+ <giorni>1</giorni>
+ </tappa>
+ <durata>8</durata>
+ <costo>1000</costo>
+ <descrizione>Monti, Arrampicate e Passeggiate</descrizione>
+</viaggio>
+<viaggio codice="0002" tipo="avventuroso">
+ <tappa>
+ <luogo>Harlem</luogo>
+ <giorni>1</giorni>
+ </tappa>
+ <tappa>
+ <luogo>Caracas</luogo>
+ <giorni>1</giorni>
+ </tappa>
+ <tappa>
+ <luogo>Sing Sing</luogo>
+ <giorni>2</giorni>
+ </tappa>
+ <durata>4</durata>
+ <costo>321</costo>
+ <descrizione>Rischio e Pericolo</descrizione>
+</viaggio>
+<viaggio codice="0003" tipo="perverso">
+ <tappa>
+ <luogo>Filippine</luogo>
+ <giorni>4</giorni>
+ </tappa>
+ <tappa> 
+ <luogo>Indonesia</luogo>
+ <giorni>2</giorni>
+ </tappa>
+ <tappa>
+ <luogo>Sing Sing</luogo>
+ <giorni>4</giorni>
+ </tappa>
+ <durata>4</durata>
+ <costo>1254</costo>
+ <descrizione>Bellezze orientali</descrizione>
+</viaggio>
+<viaggio codice="0004" tipo="culturale">
+ <tappa>
+ <luogo>Parma</luogo>
+ <giorni>2</giorni>
+ </tappa>
+ <tappa>
+ <luogo>Cesena</luogo>
+ <giorni>1</giorni>
+ </tappa>
+ <tappa>
+ <luogo>Bertinoro</luogo>
+ <giorni>2</giorni>
+ </tappa>
+ <tappa>
+ <luogo>Cento</luogo>
+ <giorni>2</giorni>
+ </tappa>
+ <durata>7</durata>
+ <costo>3412</costo>
+ <descrizione>Gastronomia nostrana</descrizione>
+</viaggio>
+<prenotazione codice="0004" >
+ <cliente>
+ <cognome>Ghini</cognome>
+ <nome>Vittorio</nome>
+ </cliente>
+ <data>11</data>
+</prenotazione>
+<prenotazione codice="0001" >
+ <cliente>
+ <cognome>Ghini</cognome>
+ <nome>Vittorio</nome>
+ </cliente>
+ <data>19</data>
+</prenotazione>
+<prenotazione codice="0002" >
+ <cliente>
+ <cognome>Sicuro</cognome>
+ <nome>Laura</nome>
+ </cliente>
+ <data>5</data>
+</prenotazione>
+<prenotazione codice="0003" >
+ <cliente>
+ <cognome>Clinton</cognome>
+ <nome>Bill</nome>
+ </cliente>
+ <data>6</data>
+</prenotazione>
+<prenotazione codice="0003" >
+ <cliente>
+ <cognome>Flowers</cognome>
+ <nome>Jennifer</nome>
+ </cliente>
+ <data>6</data>
+</prenotazione> 
+<prenotazione codice="0003" >
+ <cliente>
+ <cognome>Jackson</cognome>
+ <nome>Michael</nome>
+ </cliente>
+ <data>6</data>
+</prenotazione>
+</agenzia>

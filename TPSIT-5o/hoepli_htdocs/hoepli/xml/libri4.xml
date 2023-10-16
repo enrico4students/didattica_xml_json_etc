@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<lb:libro xmlns:lb="mioSito.com/libri">
+<lb:titolo>Libro di informatica</lb:titolo>
+<ca:capitolo xmlns:ca="mioSito.com/capitoli">
+<ca:titolo>Documento in stile XML</ca:titolo>
+<ca:testo>testo testo testo</ca:testo>
+</ca:capitolo>
+</lb:libro>

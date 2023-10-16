@@ -1,0 +1,7 @@
+<!ELEMENT artista(#PCDATA)>
+<!ELEMENT titolo(#PCDATA)>
+<!ELEMENT anno(#PCDATA)>
+<!ELEMENT commento(#PCDATA)>
+<!ELEMENT lunghezza (#PCDATA)>
+<!ELEMENT canzone(artista?, titolo, anno, commento?, lunghezza)>
+<!ELEMENT DISCO(canzone+)>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<HTML>
+  <HEAD>
+    <META CHARSET="UTF-8"/>
+    <TITLE>Esempi con Firebase </TITLE>
+    <!-- 1) connessione al driver/funzioni Firebase -->
+    <script 
+      src="https://www.gstatic.com/firebasejs/7.9.3/firebase.js">
+    </script>  
+  </HEAD>
+  <BODY>
+    <P>Esempio 2 connessione a Firebase - file con dati  </P>
+    <H3 id="id01"></H3>
+    <!-- 2) dati della nostra configurazione Firebase--> 
+    <script src="datiConnessione.js"></script>
+    <script>
+      // 3) visualizza un singolo elemento del database
+      var output = document.getElementById('id01');
+      var dbRef = firebase.database().ref().child('testo');
+      dbRef.on('value', snap => output.innerText = snap.val());
+    </script>
+  </BODY>
+</HTML>

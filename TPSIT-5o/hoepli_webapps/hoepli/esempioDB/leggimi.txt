@@ -1,0 +1,11 @@
+questa cartella contiene tutti gli archivi:
+
+- database Java DB per connessioine derby
+
+- database Access con connessione UCanAccess
+
+- database per MySql (richiede driver mysql-connector-java-5.1.17-bin.jar)
+
+- file excel  
+
+

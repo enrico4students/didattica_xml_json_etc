@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- caso 1: sesso come attributo --> 
+<persone>
+<persona sesso="f">
+<nome>Anna</nome>
+<cognome>Rossi</cognome>
+</persona>
+<!-- caso 2: sesso come elemento --> 
+<persona>
+<sesso>f</sesso>
+<nome>Anna</nome>
+<cognome>Rossi</cognome>
+</persona>
+</persone>

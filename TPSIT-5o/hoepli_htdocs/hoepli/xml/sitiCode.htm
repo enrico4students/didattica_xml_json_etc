@@ -1,0 +1,25 @@
+<html>
+<head>
+<title>Esercitazione per gli studenti</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+
+<body bgcolor="#FFFFFF">
+<p><font color="#0000FF"><a href="JSON4.htm"><img src="../images/execute.gif" width="44" height="32" border="0" align="right"></a><a href="index.html"><img src="../images/return.gif" width="41" height="30" align="right" border="0"></a></font></p>
+<h2><font color="#006600">Codice sorgente del file posta.xml</font></h2>
+<pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;<br>&lt;!DOCTYPE siti SYSTEM &quot;siti.dtd&quot;&gt;<br>&lt;siti&gt;<br> &lt;sito IDSito=&quot;sit001&quot;&gt;<br>  &lt;nome&gt; Google &lt;/nome&gt;<br>  &lt;URL&gt;http://www.google.it&lt;/URL&gt;<br>  &lt;note&gt; Il motore di ricerca piu' utilizzato al mondo&lt;/note&gt;  <br>  &lt;categoria&gt;motori di ricerca&lt;/categoria&gt;<br> &lt;/sito&gt;</pre>
+<pre> &lt;sito IDSito=&quot;sit002&quot;&gt;
+  &lt;nome&gt;Bridge Base Online&lt;/nome&gt;
+  &lt;URL&gt;http://www.bridgebase.com&lt;/URL&gt;
+  &lt;note&gt;Il piu' famoso portale per gli amanti del bridge&lt;/note&gt; 
+  &lt;categoria&gt;games&lt;/categoria&gt;
+ &lt;/sito&gt;
+&lt;/siti&gt; </pre>
+<h2> 
+ <br>
+  <font color="#006600">Codice sorgente del file posta.dtd</font><br>
+</h2>
+<pre>&lt;!ELEMENT siti (sito)*&gt;<br>&lt;!ELEMENT sito (nome, URL, note, categoria)&gt;<br>&lt;!ELEMENT nome (#PCDATA)&gt;<br>&lt;!ELEMENT URL (#PCDATA)&gt;<br>&lt;!ELEMENT note (#PCDATA)&gt;<br>&lt;!ELEMENT categoria (#PCDATA)&gt;<br>&lt;!ATTLIST sito IDSito ID #REQUIRED&gt;</pre>
+<p>&nbsp;     </p>
+</body>
+</html>

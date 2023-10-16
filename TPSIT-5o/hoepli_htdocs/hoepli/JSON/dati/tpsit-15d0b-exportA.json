@@ -1,0 +1,25 @@
+{
+  "libri" : {
+    "Mondadori" : {
+      "J. K. Rowling " : {
+        "Harry Potter e la pietra filosofale" : {
+          "genere" : "fantasy",
+          "prezzo" : 18
+        }
+      }
+    },
+    "hoepli" : {
+      "Camagni Paolo" : {
+        "Algoritmi I" : {
+          "anno" : 2006,
+          "argomento" : "informatica",
+          "prezzo" : 22
+        },
+        "Tesi di laurea : {
+          "anno " : 1984,
+          "argomento" : "robotica industriale"
+        }
+      }
+    }
+  }
+}

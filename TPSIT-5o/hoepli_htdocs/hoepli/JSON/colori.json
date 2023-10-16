@@ -1,0 +1,51 @@
+{
+  "colori": [
+    {
+      "colore": "black",
+      "tipo": "primary",
+      "codice": {
+        "rgb": [255,255,255],
+        "hex": "#000"
+      }
+    },
+    {
+      "colore": "white",
+      "codice": {
+        "rgb": [0,0,0],
+        "hex": "#FFF"
+      }
+    },
+    {
+      "colore": "red",
+      "tipo": "primary",
+      "codice": {
+        "rgb": [255,0,0],
+        "hex": "#FF0"
+      }
+    },
+    {
+      "colore": "blue",
+      "tipo": "primary",
+      "codice": {
+        "rgb": [0,0,255],
+        "hex": "#00F"
+      }
+    },
+    {
+      "colore": "yellow",
+      "tipo": "primary",
+      "codice": {
+        "rgb": [255,255,0],
+        "hex": "#FF0"
+      }
+    },
+    {
+      "colore": "green",
+      "tipo": "secondary",
+      "codice": {
+        "rgb": [0,255,0],
+        "hex": "#0F0"
+      }
+    },
+  ]
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<HTML>
+  <HEAD>
+    <META CHARSET="UTF-8"/>
+    <TITLE>Esempi con Firebase </TITLE>
+    <!-- 1) connessione al driver/funzioni Firebase -->
+    <script 
+     src="https://www.gstatic.com/firebasejs/7.9.3/firebase.js">
+    </script>  
+  </HEAD>
+  <BODY>
+    <P>Esempio 9: eliminazione nodo </P>
+    <H4 id="id01"></H4>
+    <script src="datiConnessione.js"></script>
+ 
+    <script>
+      // definizione dato del nodo  
+      var path ='libri/hoepli/Niko/';
+      var nodo = 'Java';                // nome del nodo 
+      var postData = {                  // nodo senza attributi   
+      };
+      //  aggiornamento database 
+      var updates = {};
+      updates[path+nodo] = postData;
+      firebase.database().ref().update(updates);
+      
+      //  visualizza albero JSON
+      var output = document.getElementById("id01");
+      var ref = firebase.database().ref().child(path);   
+      ref.on("value", function(snapshot){
+        output.innerHTML = JSON.stringify(snapshot.val(), null, 2);
+      });
+    </script>
+  </BODY>
+</HTML>

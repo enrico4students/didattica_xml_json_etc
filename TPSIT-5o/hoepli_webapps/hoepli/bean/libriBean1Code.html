@@ -1,0 +1,21 @@
+<html>
+<head>
+<title>Esercitazione</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+
+<body bgcolor="#FFFFFF">
+<p><font color="#0000FF"><a href="../libriBean.html"><img src="images/execute.gif" align="right" border="0"></a><a href="index.html"><img src="images/return.gif" width="24" height="24" align="right" border="0"></a></font></p>
+<h2><font color="#FF0000">Esercitazione di laboratorio</font></h2>
+<p><font color="#006600">Codice sorgente <strong>libriBean1.jsp</strong> richiamato da <strong>libriBean1.html</strong></font></p>
+<pre><font color="#0000FF"><font color="#0000FF">&lt;HTML&gt;<br>&lt;HEAD&gt;<br>&lt;/HEAD&gt;<br>&lt;BODY BGCOLOR=&quot;ffffcc&quot;&gt;<br><font color="#000000">&lt;<font color="#FF0000">jsp</font>:useBean <font color="#FF0000">id</font>=&quot;libri&quot; <font color="#FF0000">class</font>=&quot;mieiBean.LibriBean&quot; /&gt;</font><br>&lt;H1&gt;&lt;img src=&quot;<font color="#000000">jsp/images/logoeditore.gif</font>&quot; width=&quot;364&quot; height=&quot;56&quot;&gt;&lt;/H1&gt;<br>&lt;H2&gt;&lt;font color=&quot;#FF0000&quot; face=&quot;Arial, Helvetica, sans-serif&quot;&gt;<font color="#000000">Benvenuto nella <br>  nostra libreria</font>&lt;/font&gt;&lt;/H2&gt;<br>&lt;HR&gt;<br>&lt;H2&gt;&lt;font color=&quot;#0000FF&quot;&gt;Ti suggerisco i seguenti libri di:<br><font color="#000000">&lt;% <font color="#FF00FF">out</font>.println( <font color="#FF00FF">request</font>.getParameter(&quot;scelta&quot;) );%&gt;</font><br>&lt;/font&gt;&lt;/H2&gt;</font></font></pre>
+<pre>&lt;!-- setto nel Bean la variabile categoria con la scelta dell'utente --&gt;
+   &lt;jsp:<font color="#FF9900">setProperty</font> name=&quot;libri&quot; <font color="#FF6600">property</font>=&quot;categoria&quot; 
+   value= &quot;&lt;%= <font color="#FF00FF">request</font>.getParameter(\&quot;scelta\&quot;) %&gt;&quot; /&gt;</pre>
+<pre>&lt;!-- ricevo dal Bean la stringa di risposta --&gt;
+   &lt;jsp:<font color="#FF9900">getProperty</font> name=&quot;libri&quot; <font color="#FF6600">property</font>=&quot;elenco&quot;/&gt;
+<font color="#0000FF">&lt;HR&gt;
+</font><font color="#0000FF">&lt;<font color="#0000FF">/BODY&gt;  
+&lt;/HTML&gt; </font> </font>  </pre>
+</body>
+</html>

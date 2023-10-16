@@ -1,0 +1,65 @@
+<HTML><HEAD>
+<LINK HREF="/maps/documentation/javascript/examples/default.css" REL="stylesheet">
+<SCRIPT TYPE="text/javascript"
+SRC="https://maps.googleapis.com/maps/api/js?key=AIzaSyChTsh9mTgKrBBzRAdmRVFLBTDWG__5aWk&sensor=false">
+</script>
+<STYLE>
+div.box { 
+  position:absolute;
+  left:3px;
+  top:10px;
+  height:540px;
+  width:400px;
+  background-color:azure;
+  overflow:auto; 
+}
+div.mappa { 
+  position:absolute;
+  left:420px;
+  top:10px;
+  height:540px;
+  width:550px;
+  background-color:yellow; 
+}
+</STYLE>
+<SCRIPT TYPE="text/javascript"> 
+function init(){
+  // dichiarazione oggetto DirectionService, per la ricerca del percorso
+  var direzione = new google.maps.DirectionsService();
+  // dichiarazione oggetto DirectionRenderer, per visualizzare i risultati 
+  var mostra = new google.maps.DirectionsRenderer();
+  // dichiarazione opzioni della mappa
+  var opzioni = {
+    zoom: 10,
+    mapTypeId: google.maps.MapTypeId.HYBRID
+  }
+  // definizione delle proprietà necessarie per l'oggetto direzione:
+  // inizio, fine percorso e metodo di ricerca (WALKING o DRIVING)
+  var request = {
+    origin: 'Milano', 
+    destination: 'Brescia',
+    travelMode: google.maps.DirectionsTravelMode.DRIVING
+   };
+   // metodo route che calcola il percorso ricevendo due parametri
+   // la variabile literl request che contiene da inizio e fine percorso
+   // e la funzione anonima che riceve due parametri: response e status
+   direzione.route(request, function(response, status){
+    if (status == google.maps.DirectionsStatus.OK){     //se lo status è OK
+      //viene inserita la traccia del risultato con il metodo setDirections
+      mostra.setDirections(response);
+    }
+   });
+   //definizione oggetto di classe Maps e associazione al <div> di nome 'mappa'
+   map = new google.maps.Map(document.getElementById("mappa"), opzioni);
+   //metodo setMap mostra nella mappa l'output dei risultati
+   mostra.setMap(map);
+   //metodo setPanel mostra nel <div> l'output dei risultati in forma testuale
+   mostra.setPanel(document.getElementById('elenco'));
+}
+</SCRIPT>
+</HEAD> 
+<TITLE>Ricerca del percorso</TITLE>
+<BODY onload="init()"> 
+<div class="box" id="elenco"></DIV></P>
+<DIV id="mappa" class="mappa"></DIV>
+</BODY></HTML>

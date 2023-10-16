@@ -46,18 +46,6 @@ public class PrintAllHandlerSax extends DefaultHandler {
 
         System.out.printf(pad+"Start Element : %s%n", qName);
 
-        if (qName.equalsIgnoreCase("staff")) {
-            // get tag's attribute by name
-            String id = attributes.getValue("id");
-            System.out.printf("Staff id : %s%n", id);
-        }
-
-        if (qName.equalsIgnoreCase("salary")) {
-            // get tag's attribute by index, 0 = first attribute
-            String currency = attributes.getValue(0);
-            System.out.printf("Currency :%s%n", currency);
-        }
-
     }
 
     @Override
@@ -69,22 +57,6 @@ public class PrintAllHandlerSax extends DefaultHandler {
 
         System.out.println(pad+currentValue.toString());
         System.out.printf(pad+"End Element : %s%n", qName);
-
-        if (qName.equalsIgnoreCase("name")) {
-            System.out.printf("Name : %s%n", currentValue.toString());
-        }
-
-        if (qName.equalsIgnoreCase("role")) {
-            System.out.printf("Role : %s%n", currentValue.toString());
-        }
-
-        if (qName.equalsIgnoreCase("salary")) {
-            System.out.printf("Salary : %s%n", currentValue.toString());
-        }
-
-        if (qName.equalsIgnoreCase("bio")) {
-            System.out.printf("Bio : %s%n", currentValue.toString());
-        }
 
         level--;
     }

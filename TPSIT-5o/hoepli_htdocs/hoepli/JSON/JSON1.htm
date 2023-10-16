@@ -1,0 +1,29 @@
+<html>
+<head>
+<title>Primo esempio con JSON</title>
+<script language="javascript" >
+var oggetto1= { 
+ "linguaggio" : "Java", 
+ "autore" : "Riccardo Nikolassy" 
+};
+document.write("<h1>Esempio con JSON e JavaScript</h1>");
+document.write("<br>");
+document.write("<h3> Linguaggio = " + oggetto1.linguaggio +"</h3>");
+document.write("<h3>Autore = " + oggetto1.autore +"</h3>");
+var oggetto2= { 
+ "linguaggio": "PHP",
+ "autore": "Paolo Camagni"
+};
+document.write("<br>");
+document.write("<h3> Linguaggio = " + oggetto2.linguaggio +"</h3>");
+document.write("<h3>Autore = " + oggetto2.autore +"</h3>");
+
+document.write("<hr />");
+document.write(oggetto2.linguaggio + " puoi studiarlo sul libro scritto da " + oggetto2.autore);
+document.write("<hr />");
+</script>
+</head>
+<body>
+</body>
+</html>
+

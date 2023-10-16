@@ -1,0 +1,76 @@
+<html>
+<head>
+<title>Esercitazionde per gli studenti</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+
+<body bgcolor="#FFFFFF">
+<p><font color="#0000FF"><a href="db1.jsp"><img src="images/execute.gif" align="right" border="0"></a><a href="index.html"><img src="images/return.gif" width="24" height="24" align="right" border="0"></a></font></p>
+<h2><font color="#FF0000">Esercitazione di laboratorio</font></h2>
+<p><font color="#006600">Codice sorgente db1.jsp</font></p>
+<pre>   <font color="#0000FF">&lt;HTML&gt;
+   &lt;BODY&gt;
+   &lt;TITLE&gt;<font color="#000000">JDBC e database MySQL</font>&lt;/TITLE&gt;
+   &lt;/BODY&gt;
+   &lt;H1&gt;<font color="#000000">JDBC e database MySQL</font>&lt;/H1&gt;
+</font>   &lt;%@ page import=&quot;java.sql.*&quot; %&gt;
+   <font color="#0000FF">&lt;TABLE BORDER=&quot;1&quot;&gt;</font></pre>
+<pre>   &lt;%
+ <em>  // carico il driver per la connessione al DB MySQL
+ </em> <font color="#009900"> String</font> DRIVER = &quot;<font color="#FF00FF">com.mysql.jdbc.Driver</font>&quot;;
+<em>   // riferimento al database: connessione Mysql
+</em>   <font color="#009900">String</font> URL_mioDB = &quot;<font color="#FF00FF">jdbc:mysql://localhost:3306/proveJava</font>&quot;; //3306 di default
+<em>   // definizione della query 
+</em>   <font color="#009900">String</font> query = &quot;<font color="#FF00FF">SELECT Cognome, Nome, Indirizzo, Citta FROM Amici</font>&quot;;
+   
+   <font color="#009900">try{</font>
+     Class.forName(DRIVER);
+   } 
+   <font color="#009900">catch </font>(ClassNotFoundException e) {
+     System.err.println(&quot;Driver non trovato&quot; + e);
+   } </pre>
+<pre>   Connection connessione = null;
+  <font color="#009900"> try{</font>
+<em>     // apro la connesione verso il database.</em>
+     connessione = DriverManager.getConnection(URL_mioDB,&quot;root&quot;,&quot;&quot;);
+   } 
+   <font color="#009900">catch </font>(Exception e){
+     System.err.println(&quot;Errore nella connessione col database: &quot; + e);
+   } </pre>
+<pre> <font color="#009900">  try{</font>
+<em>     // ottengo lo Statement per interagire con il database</em>
+     Statement statement = connessione.createStatement();
+<em>     // interrogo il DBMS mediante una query SQL</em>
+     ResultSet resultSet = statement.executeQuery(query);
+<em>     // Scorro e mostro i risultati.
+</em>     out.println(&quot;<font color="#0000FF">&lt;PRE&gt;</font>&quot;);
+     out.println(&quot;<font color="#0000FF">&lt;B&gt;</font>cognome&quot;+&quot;&amp;#9;&quot;+&quot;nome&quot;+&quot;&amp;#9;&quot;+&quot;indirizzo&quot;+&quot;&amp;#9;&quot;+&quot;citta<font color="#0000FF">&lt;/B&gt;&lt;BR&gt;</font>&quot;);
+     <font color="#009900">while</font> (resultSet.next()) {
+       <font color="#009900">String</font> cognome = resultSet.getString(1);
+       <font color="#009900">String</font> nome = resultSet.getString(2);
+       <font color="#009900">String</font> indirizzo = resultSet.getString(3);
+       <font color="#009900">String</font> citta = resultSet.getString(4);
+       out.println( cognome+&quot;&amp;#9;&quot;+nome+&quot;&amp;#9;&quot;+indirizzo+&quot;&amp;#9;&quot;+citta);
+   }
+   out.println(&quot;<font color="#0000FF">&lt;/PRE&gt;&lt;BR&gt;</font>&quot;);
+   } 
+  <font color="#009900"> catch </font>(Exception e){
+     System.err.println(e);
+   } 
+<em>   // chiusura connessione </em>
+  <font color="#009900"> try{</font>
+     connessione.close();
+   } 
+  <font color="#009900"> catch</font> (Exception e) {
+     System.err.println(e);
+   }
+   out.close();
+   %&gt;
+   <font color="#0000FF">&lt;/TABLE&gt;
+   &lt;/BODY&gt;
+   &lt;/HTML&gt;</font>
+ </pre>
+<h3>&nbsp; </h3>
+<font color="#0000FF"> </font>
+</body>
+</html>

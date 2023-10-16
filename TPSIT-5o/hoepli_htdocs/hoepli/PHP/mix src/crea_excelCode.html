@@ -1,0 +1,15 @@
+<html>
+<head>
+<title>Esercitazione per gli studenti</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+
+<body bgcolor="#FFFFFF">
+<p><font color="#0000FF"><a href="crea_excel.php"><img src="../images/execute.gif" width="44" height="32" border="0" align="right"></a><a href="index.html"><img src="../images/return.gif" width="41" height="30" align="right" border="0"></a></font></p>
+<h3><font color="#006600">Codice sorgente del file crea_excel.php</font></h3>
+<pre>&lt;?php<br>//Tecnica postback per rientare nella stessa pagina<br>if (isset($_POST['nomefile'])) {<br>   $filename = $_POST['nomefile'];       // nome del file<br>   header (&quot;Content-Type: application/vnd.ms-excel&quot;);<br>   header (&quot;Content-Disposition: inline; filename=$filename.xls&quot;);<br>   ?&gt;<br>   &lt;HTML&gt;&lt;BODY&gt;&lt;TABLE&gt;<br>   &lt;?php<br>   //Ciclo in cui genero il codice HTML da inserire nel file Excel<br>   for ($i = 1; $i &lt;= 5; $i++){<br>      echo &quot;&lt;TR&gt;&quot;;<br>      for ($j = 1; $j &lt; 11; $j++){<br>         $a = $i * $j;<br>         echo &quot;&lt;TD&gt;$a&lt;/TD&gt;&quot;;<br>      }<br>      echo &quot;&lt;/TR&gt;&quot;;<br>   }<br>   ?&gt;<br>   &lt;/TABLE&gt;&lt;/BODY&gt;&lt;/HTML&gt;<br>   &lt;?php<br>}<br>else{            // mostro il form che richiede il nome<br>   echo &quot;<br>   &lt;B&gt;Genero un tabellina pitagorica 10 x 5 in un foglio excel&lt;/B&gt;&lt;BR&gt;&lt;BR&gt;<br>   &lt;FORM name='form' METHOD='post' ACTION='&quot;.$_SERVER['PHP_SELF'].&quot;'&gt;<br>   &lt;B&gt;Nome file Excel da creare &lt;/B&gt;&lt;INPUT TYPE='text' NAME='nomefile'&gt;.xls&lt;BR&gt;<br>   &lt;INPUT TYPE='submit' VALUE='Crea file'&gt;<br>   &lt;/FORM&gt;&lt;/BODY&gt;&lt;/HTML&gt;&quot;;<br>}<br>?&gt;</pre>
+<p></p>
+<pre>&nbsp;
+</pre>
+</body>
+</html>

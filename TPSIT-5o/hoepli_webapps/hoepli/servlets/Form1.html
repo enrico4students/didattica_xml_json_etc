@@ -1,0 +1,58 @@
+<html>
+<head>
+<title>Esercitazione per gli studenti</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+
+<body bgcolor="#FFFFFF">
+<p><font color="#0000FF"><a href="servlet6.html"><img src="images/execute.gif" align="right" border="0"></a><a href="index.html"><img src="images/return.gif" width="24" height="24" align="right" border="0"></a></font></p>
+<h2><font color="#FF0000"> </font><font color="#006600">Codice sorgente classe 
+  Form1.java</font></h2>
+<h4> // legge due parametri da una form HTML (servlet6.html) col metodo GET </h4>
+<pre><font color="#0000FF">import</font> java.io.*;
+<font color="#0000FF">import</font> javax.servlet.*;
+<font color="#0000FF">import</font> javax.servlet.http.*;
+
+<font color="#0000FF">public class</font> <font color="#FF0000">Form1</font> <font color="#0000FF">extends</font> HttpServlet 
+{
+  <font color="#0000FF">private</font> <font color="#0000FF">String</font> titolo, saluti;
+
+  <font color="#0000FF">private static final String</font> <font color="#990000">PAGE_TOP</font> = &quot;&quot;<br>    + &quot;<font color="#006600">&lt;html&gt;</font>&quot;<br>    + &quot;<font color="#009900">&lt;head&gt;</font>&quot;<br>    + &quot;<font color="#009900">&lt;title&gt;</font> <font color="#990000">Passaggio parametri da una form HTML - GET</font> <font color="#009900">&lt;/title&gt;</font>&quot;<br>    + &quot;<font color="#009900">&lt;/head&gt;</font>&quot;<br>    + &quot;<font color="#009900">&lt;body&gt;</font>&quot;<br>   ;
+
+ <font color="#0000FF"> private static final String</font> <font color="#990000">PAGE_BOTTOM</font> = &quot;&quot;<br>    + &quot;&lt;/<font color="#009900">body</font>&gt;&quot;<br>    + &quot;&lt;/<font color="#009900">html</font>&gt;&quot;<br>  ;
+
+  // icone per visualizzare codice o ritornare al menu'<br>  <font color="#0000FF">private static final String</font> <font color="#990000">ICONE</font> = &quot;&quot;<br>    + &quot;<font color="#009900">&lt;a href=\&quot;../Form1.html\&quot;&gt;<font color="#000000">&quot;</font><br>  <font color="#000000">  + &quot;</font>&lt;img src=\&quot;../images/code.gif\&quot; height=24 <font color="#000000">&quot;</font><br>  <font color="#000000">  +</font><font color="#000000"> &quot;</font>width=24 align=right border=0 alt=\&quot;view code\&quot;&gt;&lt;/a&gt;<font color="#000000">&quot;</font><br>   <font color="#000000"> + </font><font color="#000000">&quot;</font>&lt;a href=\&quot;../index.html\&quot;&gt;&quot;<br>   <font color="#000000"> +</font><font color="#000000"> &quot;</font>&lt;img src=\&quot;../images/return.gif\&quot; height=24 <font color="#000000">&quot;</font> <br>  <font color="#000000">  +</font><font color="#000000"> &quot;</font>width=24 align=right border=0 alt=\&quot;return\&quot;&gt;&lt;/a&gt;</font> &quot;<br>  ;   </pre>
+<pre>  <font color="#0000FF">public</font> <font color="#0000FF">void</font> <strong>doGet</strong>(HttpServletRequest request,HttpServletResponse response)
+  <font color="#0000FF">throws</font> IOException, ServletException
+  {
+    <strong>doPost</strong>(request, response);
+  }  <font color="#0000FF">
+   
+  public</font> <font color="#0000FF">void</font> <strong>doPost</strong>(HttpServletRequest request, HttpServletResponse response)
+  <font color="#0000FF">throws</font> IOException, ServletException
+  {
+    response.setContentType(&quot;text/html&quot;);
+    PrintWriter out = response.getWriter(); // get writer
+   
+    // i parametri nome e cognome vengono passati dal browser
+   <font color="#0000FF"> String</font> nome = request.getParameter(&quot;nome&quot;);
+   <font color="#0000FF"> String</font> cognome = request.getParameter(&quot;cognome&quot;);
+  
+    // crea una pagina HTML e la invia al client 
+    out.println(<font color="#990000">PAGE_TOP</font>);
+    out.println(<font color="#990000">ICONE</font>);
+  
+    // contenuto della pagina html 
+    out.println(<font color="#009900">&quot;Ciao &quot;+nome+&quot; &quot;+cognome+&quot;!&lt;/p&gt;&quot;</font>);
+    out.println(<font color="#009900">&quot;&lt;b&gt;La data di oggi e'': &quot; + new java.util.Date()+    &quot;&lt;/b&gt;&lt;/p&gt;&quot;</font>);
+
+    // chiusura pagina HTML
+    out.println(<font color="#990000">PAGE_BOTTOM</font>);
+  }
+
+  <font color="#0000FF">public void</font> <strong>doGet</strong>(HttpServletRequest request,HttpServletResponse response)<br>  <font color="#0000FF">throws</font> IOException, ServletException<br>  {<br>    <strong>doPost</strong>(request, response);<br>  }
+}</pre>
+
+<pre>&nbsp; </pre>
+</body>
+</html>
